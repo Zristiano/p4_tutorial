@@ -39,6 +39,20 @@ header ipv4_t {
     ip4Addr_t dstAddr;
 }
 
+header tcp_t {
+    bit<16> srcPort;
+    bit<16> dstPort;
+    bit<32> seqNo;
+    bit<32> ackNo;
+    bit<4>  dataOffset;
+    bit<3>  res;
+    bit<3>  ecn;
+    bit<6>  ctrl;
+    bit<16> window;
+    bit<16> checksum;
+    bit<16> urgentPtr;
+}
+
 struct metadata {
     bit<8> route;
     /* empty */
@@ -48,6 +62,7 @@ struct headers {
     ethernet_t  ethernet;
     ecmp_t  ecmp;
     ipv4_t  ipv4;
+    tcp_t   tcp;
 }
 
 /*************************************************************************
@@ -82,6 +97,14 @@ parser MyParser(packet_in packet,
 
     state parse_ipv4 {
         packet.extract(hdr.ipv4);
+        transition select(hdr.ipv4.protocol) {
+            6: parse_tcp;
+            default: accept;
+        }
+    }
+
+    state parse_tcp {
+        packet.extract(hdr.tcp);
         transition accept;
     }
 
@@ -141,7 +164,16 @@ control MyIngress(inout headers hdr,
     }
 
     action load_balance() {
-        meta.route = 1;
+        meta.route = 0;
+        // hash(meta.route,
+	    // HashAlgorithm.crc16,
+	    // 0,
+	    // {   hdr.ipv4.srcAddr,
+	    //     hdr.ipv4.dstAddr,
+        //     hdr.ipv4.protocol,
+        //     hdr.tcp.srcPort,
+        //     hdr.tcp.dstPort },
+	    // 2);
         // hdr.ecmp.enable = 0;
     }
     
