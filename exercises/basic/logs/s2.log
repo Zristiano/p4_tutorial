@@ -1,0 +1,1488 @@
+Calling target program-options parser
+Adding interface s2-eth1 as port 1
+[21:41:55.511] [bmv2] [D] [thread 5212] Adding interface s2-eth1 as port 1
+Adding interface s2-eth2 as port 2
+[21:41:55.537] [bmv2] [D] [thread 5212] Adding interface s2-eth2 as port 2
+Adding interface s2-eth3 as port 3
+[21:41:55.561] [bmv2] [D] [thread 5212] Adding interface s2-eth3 as port 3
+I0929 21:41:55.589930058    5212 server_builder.cc:247]      Synchronous server. Num CQs: 1, Min pollers: 1, Max Pollers: 2147483647, CQ timeout (msec): 1000
+Server listening on 0.0.0.0:50052
+[21:41:55.593] [bmv2] [I] [thread 5212] Starting Thrift server on port 9091
+[21:41:55.594] [bmv2] [I] [thread 5212] Thrift server was started
+New connection
+P4Runtime SetForwardingPipelineConfig
+[21:41:57.691] [bmv2] [W] [thread 5269] [P4Runtime] p4::tmp::P4DeviceConfig is deprecated
+[21:41:57.692] [bmv2] [D] [thread 5269] Set default default entry for table 'MyIngress.ipv4_lpm': NoAction - 
+[21:41:57.693] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Processing packet received on port 1
+[21:41:57.693] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Parser 'parser': start
+[21:41:57.693] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.694] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.694] [bmv2] [T] [thread 5276] [0.0] [cxt 0] Bytes parsed: 0
+[21:41:57.694] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Parser 'parser': end
+[21:41:57.694] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Pipeline 'ingress': start
+P4Runtime Write
+device_id: 1
+election_id {
+  low: 1
+}
+updates {
+  type: MODIFY
+  entity {
+    table_entry {
+      table_id: 33574068
+      action {
+        action {
+          action_id: 16805608
+        }
+      }
+      is_default_action: true
+    }
+  }
+}
+[21:41:57.696] [bmv2] [D] [thread 5269] Set default entry for table 'MyIngress.ipv4_lpm': MyIngress.drop - 
+[21:41:57.696] [bmv2] [T] [thread 5276] [0.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.696] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.697] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.697] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.697] [bmv2] [T] [thread 5276] [0.0] [cxt 0] Action MyIngress.drop
+[21:41:57.697] [bmv2] [T] [thread 5276] [0.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.697] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.697] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Egress port is 511
+[21:41:57.697] [bmv2] [D] [thread 5276] [0.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.697] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Processing packet received on port 2
+[21:41:57.697] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Parser 'parser': start
+[21:41:57.698] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.698] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.698] [bmv2] [T] [thread 5276] [1.0] [cxt 0] Bytes parsed: 0
+[21:41:57.698] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Parser 'parser': end
+[21:41:57.698] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.698] [bmv2] [T] [thread 5276] [1.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.698] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.698] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.698] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.698] [bmv2] [T] [thread 5276] [1.0] [cxt 0] Action MyIngress.drop
+[21:41:57.698] [bmv2] [T] [thread 5276] [1.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.698] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.698] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Egress port is 511
+[21:41:57.698] [bmv2] [D] [thread 5276] [1.0] [cxt 0] Dropping packet at the end of ingress
+P4Runtime Write
+device_id: 1
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33574068
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\000\001\001"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16799317
+          params {
+            param_id: 1
+            value: "\000\000\000\001\002\000"
+          }
+          params {
+            param_id: 2
+            value: "\000\002"
+          }
+        }
+      }
+    }
+  }
+}
+[21:41:57.699] [bmv2] [D] [thread 5269] Entry 0 added to table 'MyIngress.ipv4_lpm'
+[21:41:57.699] [bmv2] [D] [thread 5269] Dumping entry 0
+Match key:
+* hdr.ipv4.dstAddr    : LPM       0a000101/32
+Action entry: MyIngress.ipv4_forward - 10200,2,
+
+[21:41:57.699] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Processing packet received on port 3
+[21:41:57.699] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Parser 'parser': start
+[21:41:57.699] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.699] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.699] [bmv2] [T] [thread 5276] [2.0] [cxt 0] Bytes parsed: 0
+[21:41:57.700] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Parser 'parser': end
+[21:41:57.700] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.700] [bmv2] [T] [thread 5276] [2.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.700] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.700] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.700] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.700] [bmv2] [T] [thread 5276] [2.0] [cxt 0] Action MyIngress.drop
+[21:41:57.700] [bmv2] [T] [thread 5276] [2.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.700] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.700] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Egress port is 511
+[21:41:57.700] [bmv2] [D] [thread 5276] [2.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Processing packet received on port 1
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Parser 'parser': start
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.700] [bmv2] [T] [thread 5276] [3.0] [cxt 0] Bytes parsed: 0
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Parser 'parser': end
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.700] [bmv2] [T] [thread 5276] [3.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.700] [bmv2] [T] [thread 5276] [3.0] [cxt 0] Action MyIngress.drop
+[21:41:57.700] [bmv2] [T] [thread 5276] [3.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Egress port is 511
+[21:41:57.700] [bmv2] [D] [thread 5276] [3.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.700] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Processing packet received on port 2
+[21:41:57.700] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Parser 'parser': start
+[21:41:57.701] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.701] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.701] [bmv2] [T] [thread 5276] [4.0] [cxt 0] Bytes parsed: 0
+P4Runtime Write
+device_id: 1
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33574068
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\000\002\002"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16799317
+          params {
+            param_id: 1
+            value: "\000\000\000\000\002\002"
+          }
+          params {
+            param_id: 2
+            value: "\000\001"
+          }
+        }
+      }
+    }
+  }
+}
+[21:41:57.701] [bmv2] [D] [thread 5269] Entry 1 added to table 'MyIngress.ipv4_lpm'
+[21:41:57.701] [bmv2] [D] [thread 5269] Dumping entry 1
+Match key:
+* hdr.ipv4.dstAddr    : LPM       0a000202/32
+Action entry: MyIngress.ipv4_forward - 202,1,
+
+[21:41:57.701] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Parser 'parser': end
+[21:41:57.702] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.702] [bmv2] [T] [thread 5276] [4.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.702] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.702] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.702] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.702] [bmv2] [T] [thread 5276] [4.0] [cxt 0] Action MyIngress.drop
+[21:41:57.702] [bmv2] [T] [thread 5276] [4.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.702] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.702] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Egress port is 511
+[21:41:57.702] [bmv2] [D] [thread 5276] [4.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.703] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Processing packet received on port 3
+[21:41:57.703] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Parser 'parser': start
+[21:41:57.703] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.703] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.703] [bmv2] [T] [thread 5276] [5.0] [cxt 0] Bytes parsed: 0
+[21:41:57.703] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Parser 'parser': end
+[21:41:57.703] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.703] [bmv2] [T] [thread 5276] [5.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.703] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.703] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.704] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.704] [bmv2] [T] [thread 5276] [5.0] [cxt 0] Action MyIngress.drop
+[21:41:57.704] [bmv2] [T] [thread 5276] [5.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.704] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.704] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Egress port is 511
+[21:41:57.704] [bmv2] [D] [thread 5276] [5.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.704] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Processing packet received on port 1
+P4Runtime Write
+device_id: 1
+election_id {
+  low: 1
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33574068
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\000\003\003"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16799317
+          params {
+            param_id: 1
+            value: "\000\000\000\003\003\000"
+          }
+          params {
+            param_id: 2
+            value: "\000\003"
+          }
+        }
+      }
+    }
+  }
+}
+[21:41:57.705] [bmv2] [D] [thread 5269] Entry 2 added to table 'MyIngress.ipv4_lpm'
+[21:41:57.705] [bmv2] [D] [thread 5269] Dumping entry 2
+Match key:
+* hdr.ipv4.dstAddr    : LPM       0a000303/32
+Action entry: MyIngress.ipv4_forward - 30300,3,
+
+[21:41:57.705] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Parser 'parser': start
+[21:41:57.705] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.705] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+Connection removed
+[21:41:57.705] [bmv2] [T] [thread 5276] [6.0] [cxt 0] Bytes parsed: 0
+[21:41:57.705] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Parser 'parser': end
+[21:41:57.706] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.706] [bmv2] [T] [thread 5276] [6.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.706] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.706] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.706] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.706] [bmv2] [T] [thread 5276] [6.0] [cxt 0] Action MyIngress.drop
+[21:41:57.706] [bmv2] [T] [thread 5276] [6.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.706] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.706] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Egress port is 511
+[21:41:57.706] [bmv2] [D] [thread 5276] [6.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.706] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Processing packet received on port 2
+[21:41:57.706] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Parser 'parser': start
+[21:41:57.706] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.706] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.706] [bmv2] [T] [thread 5276] [7.0] [cxt 0] Bytes parsed: 0
+[21:41:57.706] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Parser 'parser': end
+[21:41:57.706] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.706] [bmv2] [T] [thread 5276] [7.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.706] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.707] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.707] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.707] [bmv2] [T] [thread 5276] [7.0] [cxt 0] Action MyIngress.drop
+[21:41:57.707] [bmv2] [T] [thread 5276] [7.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.707] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.707] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Egress port is 511
+[21:41:57.707] [bmv2] [D] [thread 5276] [7.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Processing packet received on port 3
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Parser 'parser': start
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.707] [bmv2] [T] [thread 5276] [8.0] [cxt 0] Bytes parsed: 0
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Parser 'parser': end
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.707] [bmv2] [T] [thread 5276] [8.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.707] [bmv2] [T] [thread 5276] [8.0] [cxt 0] Action MyIngress.drop
+[21:41:57.707] [bmv2] [T] [thread 5276] [8.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Egress port is 511
+[21:41:57.707] [bmv2] [D] [thread 5276] [8.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.707] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Processing packet received on port 1
+[21:41:57.707] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Parser 'parser': start
+[21:41:57.707] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.707] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.707] [bmv2] [T] [thread 5276] [9.0] [cxt 0] Bytes parsed: 0
+[21:41:57.707] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Parser 'parser': end
+[21:41:57.707] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.707] [bmv2] [T] [thread 5276] [9.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.707] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.707] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.707] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.708] [bmv2] [T] [thread 5276] [9.0] [cxt 0] Action MyIngress.drop
+[21:41:57.708] [bmv2] [T] [thread 5276] [9.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.708] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.708] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Egress port is 511
+[21:41:57.708] [bmv2] [D] [thread 5276] [9.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Processing packet received on port 2
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Parser 'parser': start
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.708] [bmv2] [T] [thread 5276] [10.0] [cxt 0] Bytes parsed: 0
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Parser 'parser': end
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.708] [bmv2] [T] [thread 5276] [10.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.708] [bmv2] [T] [thread 5276] [10.0] [cxt 0] Action MyIngress.drop
+[21:41:57.708] [bmv2] [T] [thread 5276] [10.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Egress port is 511
+[21:41:57.708] [bmv2] [D] [thread 5276] [10.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Processing packet received on port 3
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Parser 'parser': start
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.708] [bmv2] [T] [thread 5276] [11.0] [cxt 0] Bytes parsed: 0
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Parser 'parser': end
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.708] [bmv2] [T] [thread 5276] [11.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.708] [bmv2] [T] [thread 5276] [11.0] [cxt 0] Action MyIngress.drop
+[21:41:57.708] [bmv2] [T] [thread 5276] [11.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.708] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Egress port is 511
+[21:41:57.709] [bmv2] [D] [thread 5276] [11.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Processing packet received on port 1
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Parser 'parser': start
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.709] [bmv2] [T] [thread 5276] [12.0] [cxt 0] Bytes parsed: 0
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Parser 'parser': end
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.709] [bmv2] [T] [thread 5276] [12.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.709] [bmv2] [T] [thread 5276] [12.0] [cxt 0] Action MyIngress.drop
+[21:41:57.709] [bmv2] [T] [thread 5276] [12.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Egress port is 511
+[21:41:57.709] [bmv2] [D] [thread 5276] [12.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.709] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Processing packet received on port 2
+[21:41:57.709] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Parser 'parser': start
+[21:41:57.709] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.709] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.709] [bmv2] [T] [thread 5276] [13.0] [cxt 0] Bytes parsed: 0
+[21:41:57.709] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Parser 'parser': end
+[21:41:57.709] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.709] [bmv2] [T] [thread 5276] [13.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.709] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.709] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.709] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.709] [bmv2] [T] [thread 5276] [13.0] [cxt 0] Action MyIngress.drop
+[21:41:57.709] [bmv2] [T] [thread 5276] [13.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.710] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.710] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Egress port is 511
+[21:41:57.710] [bmv2] [D] [thread 5276] [13.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.710] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Processing packet received on port 3
+[21:41:57.710] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Parser 'parser': start
+[21:41:57.710] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.710] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.710] [bmv2] [T] [thread 5276] [14.0] [cxt 0] Bytes parsed: 0
+[21:41:57.710] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Parser 'parser': end
+[21:41:57.710] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.710] [bmv2] [T] [thread 5276] [14.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.710] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.710] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.710] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.711] [bmv2] [T] [thread 5276] [14.0] [cxt 0] Action MyIngress.drop
+[21:41:57.711] [bmv2] [T] [thread 5276] [14.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.711] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.711] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Egress port is 511
+[21:41:57.711] [bmv2] [D] [thread 5276] [14.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Processing packet received on port 1
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Parser 'parser': start
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.711] [bmv2] [T] [thread 5276] [15.0] [cxt 0] Bytes parsed: 0
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Parser 'parser': end
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.711] [bmv2] [T] [thread 5276] [15.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.711] [bmv2] [T] [thread 5276] [15.0] [cxt 0] Action MyIngress.drop
+[21:41:57.711] [bmv2] [T] [thread 5276] [15.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Egress port is 511
+[21:41:57.711] [bmv2] [D] [thread 5276] [15.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Processing packet received on port 2
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Parser 'parser': start
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.711] [bmv2] [T] [thread 5276] [16.0] [cxt 0] Bytes parsed: 0
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Parser 'parser': end
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.711] [bmv2] [T] [thread 5276] [16.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.711] [bmv2] [T] [thread 5276] [16.0] [cxt 0] Action MyIngress.drop
+[21:41:57.711] [bmv2] [T] [thread 5276] [16.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Egress port is 511
+[21:41:57.711] [bmv2] [D] [thread 5276] [16.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.711] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Processing packet received on port 3
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Parser 'parser': start
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.712] [bmv2] [T] [thread 5276] [17.0] [cxt 0] Bytes parsed: 0
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Parser 'parser': end
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.712] [bmv2] [T] [thread 5276] [17.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.712] [bmv2] [T] [thread 5276] [17.0] [cxt 0] Action MyIngress.drop
+[21:41:57.712] [bmv2] [T] [thread 5276] [17.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Egress port is 511
+[21:41:57.712] [bmv2] [D] [thread 5276] [17.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Processing packet received on port 1
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Parser 'parser': start
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.712] [bmv2] [T] [thread 5276] [18.0] [cxt 0] Bytes parsed: 0
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Parser 'parser': end
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.712] [bmv2] [T] [thread 5276] [18.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.712] [bmv2] [T] [thread 5276] [18.0] [cxt 0] Action MyIngress.drop
+[21:41:57.712] [bmv2] [T] [thread 5276] [18.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Egress port is 511
+[21:41:57.712] [bmv2] [D] [thread 5276] [18.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.712] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Processing packet received on port 2
+[21:41:57.712] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Parser 'parser': start
+[21:41:57.712] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.712] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.712] [bmv2] [T] [thread 5276] [19.0] [cxt 0] Bytes parsed: 0
+[21:41:57.712] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Parser 'parser': end
+[21:41:57.712] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.712] [bmv2] [T] [thread 5276] [19.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.712] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.712] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.712] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.713] [bmv2] [T] [thread 5276] [19.0] [cxt 0] Action MyIngress.drop
+[21:41:57.713] [bmv2] [T] [thread 5276] [19.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.713] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.713] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Egress port is 511
+[21:41:57.713] [bmv2] [D] [thread 5276] [19.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Processing packet received on port 3
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Parser 'parser': start
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.713] [bmv2] [T] [thread 5276] [20.0] [cxt 0] Bytes parsed: 0
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Parser 'parser': end
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.713] [bmv2] [T] [thread 5276] [20.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.713] [bmv2] [T] [thread 5276] [20.0] [cxt 0] Action MyIngress.drop
+[21:41:57.713] [bmv2] [T] [thread 5276] [20.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Egress port is 511
+[21:41:57.713] [bmv2] [D] [thread 5276] [20.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.808] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Processing packet received on port 1
+[21:41:57.808] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Parser 'parser': start
+[21:41:57.808] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.809] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.809] [bmv2] [T] [thread 5276] [21.0] [cxt 0] Bytes parsed: 0
+[21:41:57.809] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Parser 'parser': end
+[21:41:57.809] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.809] [bmv2] [T] [thread 5276] [21.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.810] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.810] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.810] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.810] [bmv2] [T] [thread 5276] [21.0] [cxt 0] Action MyIngress.drop
+[21:41:57.810] [bmv2] [T] [thread 5276] [21.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.810] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.810] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Egress port is 511
+[21:41:57.810] [bmv2] [D] [thread 5276] [21.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.876] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Processing packet received on port 3
+[21:41:57.876] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Parser 'parser': start
+[21:41:57.877] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.877] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.878] [bmv2] [T] [thread 5276] [22.0] [cxt 0] Bytes parsed: 0
+[21:41:57.878] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Parser 'parser': end
+[21:41:57.878] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.879] [bmv2] [T] [thread 5276] [22.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.879] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.880] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.880] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.880] [bmv2] [T] [thread 5276] [22.0] [cxt 0] Action MyIngress.drop
+[21:41:57.880] [bmv2] [T] [thread 5276] [22.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.880] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.881] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Egress port is 511
+[21:41:57.881] [bmv2] [D] [thread 5276] [22.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.881] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Processing packet received on port 3
+[21:41:57.881] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Parser 'parser': start
+[21:41:57.881] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.881] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.881] [bmv2] [T] [thread 5276] [23.0] [cxt 0] Bytes parsed: 0
+[21:41:57.881] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Parser 'parser': end
+[21:41:57.882] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.882] [bmv2] [T] [thread 5276] [23.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.882] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.882] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.882] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.882] [bmv2] [T] [thread 5276] [23.0] [cxt 0] Action MyIngress.drop
+[21:41:57.882] [bmv2] [T] [thread 5276] [23.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.882] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.882] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Egress port is 511
+[21:41:57.882] [bmv2] [D] [thread 5276] [23.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:57.919] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Processing packet received on port 2
+[21:41:57.919] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Parser 'parser': start
+[21:41:57.919] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:57.920] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:57.920] [bmv2] [T] [thread 5276] [24.0] [cxt 0] Bytes parsed: 0
+[21:41:57.920] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Parser 'parser': end
+[21:41:57.920] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Pipeline 'ingress': start
+[21:41:57.920] [bmv2] [T] [thread 5276] [24.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:57.920] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:57.921] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:57.921] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:57.921] [bmv2] [T] [thread 5276] [24.0] [cxt 0] Action MyIngress.drop
+[21:41:57.921] [bmv2] [T] [thread 5276] [24.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:57.921] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Pipeline 'ingress': end
+[21:41:57.921] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Egress port is 511
+[21:41:57.921] [bmv2] [D] [thread 5276] [24.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:58.089] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Processing packet received on port 1
+[21:41:58.090] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Parser 'parser': start
+[21:41:58.090] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:58.090] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:58.091] [bmv2] [T] [thread 5276] [25.0] [cxt 0] Bytes parsed: 0
+[21:41:58.091] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Parser 'parser': end
+[21:41:58.091] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Pipeline 'ingress': start
+[21:41:58.092] [bmv2] [T] [thread 5276] [25.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:58.092] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:58.092] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:58.092] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:58.093] [bmv2] [T] [thread 5276] [25.0] [cxt 0] Action MyIngress.drop
+[21:41:58.093] [bmv2] [T] [thread 5276] [25.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:58.093] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Pipeline 'ingress': end
+[21:41:58.093] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Egress port is 511
+[21:41:58.093] [bmv2] [D] [thread 5276] [25.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:58.340] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Processing packet received on port 2
+[21:41:58.340] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Parser 'parser': start
+[21:41:58.340] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:58.340] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:58.340] [bmv2] [T] [thread 5276] [26.0] [cxt 0] Bytes parsed: 0
+[21:41:58.341] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Parser 'parser': end
+[21:41:58.341] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Pipeline 'ingress': start
+[21:41:58.341] [bmv2] [T] [thread 5276] [26.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:58.341] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:58.341] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:58.341] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:58.342] [bmv2] [T] [thread 5276] [26.0] [cxt 0] Action MyIngress.drop
+[21:41:58.342] [bmv2] [T] [thread 5276] [26.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:58.342] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Pipeline 'ingress': end
+[21:41:58.342] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Egress port is 511
+[21:41:58.342] [bmv2] [D] [thread 5276] [26.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:58.600] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Processing packet received on port 1
+[21:41:58.601] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Parser 'parser': start
+[21:41:58.601] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:58.601] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:58.601] [bmv2] [T] [thread 5276] [27.0] [cxt 0] Bytes parsed: 0
+[21:41:58.601] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Parser 'parser': end
+[21:41:58.601] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Pipeline 'ingress': start
+[21:41:58.602] [bmv2] [T] [thread 5276] [27.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:58.602] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:58.602] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:58.602] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:58.602] [bmv2] [T] [thread 5276] [27.0] [cxt 0] Action MyIngress.drop
+[21:41:58.602] [bmv2] [T] [thread 5276] [27.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:58.602] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Pipeline 'ingress': end
+[21:41:58.603] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Egress port is 511
+[21:41:58.603] [bmv2] [D] [thread 5276] [27.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:58.671] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Processing packet received on port 3
+[21:41:58.671] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Parser 'parser': start
+[21:41:58.671] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:58.671] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:58.671] [bmv2] [T] [thread 5276] [28.0] [cxt 0] Bytes parsed: 0
+[21:41:58.672] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Parser 'parser': end
+[21:41:58.672] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Pipeline 'ingress': start
+[21:41:58.672] [bmv2] [T] [thread 5276] [28.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:58.672] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:58.672] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:58.673] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:58.673] [bmv2] [T] [thread 5276] [28.0] [cxt 0] Action MyIngress.drop
+[21:41:58.673] [bmv2] [T] [thread 5276] [28.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:58.673] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Pipeline 'ingress': end
+[21:41:58.673] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Egress port is 511
+[21:41:58.673] [bmv2] [D] [thread 5276] [28.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:59.085] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Processing packet received on port 3
+[21:41:59.085] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Parser 'parser': start
+[21:41:59.086] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:59.086] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:59.086] [bmv2] [T] [thread 5276] [29.0] [cxt 0] Bytes parsed: 0
+[21:41:59.087] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Parser 'parser': end
+[21:41:59.087] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Pipeline 'ingress': start
+[21:41:59.088] [bmv2] [T] [thread 5276] [29.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:59.088] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:59.088] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:59.089] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:59.089] [bmv2] [T] [thread 5276] [29.0] [cxt 0] Action MyIngress.drop
+[21:41:59.089] [bmv2] [T] [thread 5276] [29.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:59.089] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Pipeline 'ingress': end
+[21:41:59.089] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Egress port is 511
+[21:41:59.090] [bmv2] [D] [thread 5276] [29.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:59.122] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Processing packet received on port 2
+[21:41:59.123] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Parser 'parser': start
+[21:41:59.123] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:59.123] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:59.123] [bmv2] [T] [thread 5276] [30.0] [cxt 0] Bytes parsed: 0
+[21:41:59.123] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Parser 'parser': end
+[21:41:59.124] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Pipeline 'ingress': start
+[21:41:59.124] [bmv2] [T] [thread 5276] [30.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:59.124] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:59.124] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:59.124] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:59.124] [bmv2] [T] [thread 5276] [30.0] [cxt 0] Action MyIngress.drop
+[21:41:59.125] [bmv2] [T] [thread 5276] [30.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:59.125] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Pipeline 'ingress': end
+[21:41:59.125] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Egress port is 511
+[21:41:59.125] [bmv2] [D] [thread 5276] [30.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:59.551] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Processing packet received on port 2
+[21:41:59.551] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Parser 'parser': start
+[21:41:59.551] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:59.551] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:59.552] [bmv2] [T] [thread 5276] [31.0] [cxt 0] Bytes parsed: 0
+[21:41:59.552] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Parser 'parser': end
+[21:41:59.552] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Pipeline 'ingress': start
+[21:41:59.552] [bmv2] [T] [thread 5276] [31.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:59.552] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:59.552] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:59.552] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:59.552] [bmv2] [T] [thread 5276] [31.0] [cxt 0] Action MyIngress.drop
+[21:41:59.552] [bmv2] [T] [thread 5276] [31.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:59.553] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Pipeline 'ingress': end
+[21:41:59.553] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Egress port is 511
+[21:41:59.553] [bmv2] [D] [thread 5276] [31.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:59.809] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Processing packet received on port 1
+[21:41:59.809] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Parser 'parser': start
+[21:41:59.809] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:59.809] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:59.810] [bmv2] [T] [thread 5276] [32.0] [cxt 0] Bytes parsed: 0
+[21:41:59.810] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Parser 'parser': end
+[21:41:59.810] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Pipeline 'ingress': start
+[21:41:59.810] [bmv2] [T] [thread 5276] [32.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:59.810] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:59.810] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:59.811] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:59.811] [bmv2] [T] [thread 5276] [32.0] [cxt 0] Action MyIngress.drop
+[21:41:59.811] [bmv2] [T] [thread 5276] [32.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:59.811] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Pipeline 'ingress': end
+[21:41:59.811] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Egress port is 511
+[21:41:59.811] [bmv2] [D] [thread 5276] [32.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:59.877] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Processing packet received on port 3
+[21:41:59.877] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Parser 'parser': start
+[21:41:59.877] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:59.878] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:59.878] [bmv2] [T] [thread 5276] [33.0] [cxt 0] Bytes parsed: 0
+[21:41:59.878] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Parser 'parser': end
+[21:41:59.879] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Pipeline 'ingress': start
+[21:41:59.879] [bmv2] [T] [thread 5276] [33.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:59.879] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:59.879] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:59.880] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:59.880] [bmv2] [T] [thread 5276] [33.0] [cxt 0] Action MyIngress.drop
+[21:41:59.880] [bmv2] [T] [thread 5276] [33.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:59.880] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Pipeline 'ingress': end
+[21:41:59.880] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Egress port is 511
+[21:41:59.880] [bmv2] [D] [thread 5276] [33.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:59.950] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Processing packet received on port 3
+[21:41:59.950] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Parser 'parser': start
+[21:41:59.950] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:59.950] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:59.950] [bmv2] [T] [thread 5276] [34.0] [cxt 0] Bytes parsed: 0
+[21:41:59.951] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Parser 'parser': end
+[21:41:59.951] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Pipeline 'ingress': start
+[21:41:59.951] [bmv2] [T] [thread 5276] [34.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:59.951] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:59.951] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:59.952] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:59.952] [bmv2] [T] [thread 5276] [34.0] [cxt 0] Action MyIngress.drop
+[21:41:59.952] [bmv2] [T] [thread 5276] [34.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:59.952] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Pipeline 'ingress': end
+[21:41:59.952] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Egress port is 511
+[21:41:59.952] [bmv2] [D] [thread 5276] [34.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:59.984] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Processing packet received on port 3
+[21:41:59.985] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Parser 'parser': start
+[21:41:59.985] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:59.985] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:59.985] [bmv2] [T] [thread 5276] [35.0] [cxt 0] Bytes parsed: 0
+[21:41:59.986] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Parser 'parser': end
+[21:41:59.986] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Pipeline 'ingress': start
+[21:41:59.986] [bmv2] [T] [thread 5276] [35.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:59.986] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:59.986] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:59.987] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:59.987] [bmv2] [T] [thread 5276] [35.0] [cxt 0] Action MyIngress.drop
+[21:41:59.987] [bmv2] [T] [thread 5276] [35.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:59.987] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Pipeline 'ingress': end
+[21:41:59.987] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Egress port is 511
+[21:41:59.988] [bmv2] [D] [thread 5276] [35.0] [cxt 0] Dropping packet at the end of ingress
+[21:41:59.988] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Processing packet received on port 2
+[21:41:59.988] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Parser 'parser': start
+[21:41:59.988] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:41:59.988] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:41:59.989] [bmv2] [T] [thread 5276] [36.0] [cxt 0] Bytes parsed: 0
+[21:41:59.989] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Parser 'parser': end
+[21:41:59.989] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Pipeline 'ingress': start
+[21:41:59.989] [bmv2] [T] [thread 5276] [36.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:41:59.989] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:41:59.989] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:41:59.989] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:41:59.989] [bmv2] [T] [thread 5276] [36.0] [cxt 0] Action MyIngress.drop
+[21:41:59.989] [bmv2] [T] [thread 5276] [36.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:41:59.989] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Pipeline 'ingress': end
+[21:41:59.989] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Egress port is 511
+[21:41:59.989] [bmv2] [D] [thread 5276] [36.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:00.017] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Processing packet received on port 2
+[21:42:00.018] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Parser 'parser': start
+[21:42:00.018] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:00.018] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:00.018] [bmv2] [T] [thread 5276] [37.0] [cxt 0] Bytes parsed: 0
+[21:42:00.019] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Parser 'parser': end
+[21:42:00.019] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Pipeline 'ingress': start
+[21:42:00.019] [bmv2] [T] [thread 5276] [37.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:00.019] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:00.019] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:00.020] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:00.020] [bmv2] [T] [thread 5276] [37.0] [cxt 0] Action MyIngress.drop
+[21:42:00.020] [bmv2] [T] [thread 5276] [37.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:00.020] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Pipeline 'ingress': end
+[21:42:00.020] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Egress port is 511
+[21:42:00.020] [bmv2] [D] [thread 5276] [37.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:00.410] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Processing packet received on port 2
+[21:42:00.410] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Parser 'parser': start
+[21:42:00.411] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:00.411] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:00.411] [bmv2] [T] [thread 5276] [38.0] [cxt 0] Bytes parsed: 0
+[21:42:00.411] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Parser 'parser': end
+[21:42:00.411] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Pipeline 'ingress': start
+[21:42:00.411] [bmv2] [T] [thread 5276] [38.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:00.412] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:00.412] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:00.412] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:00.412] [bmv2] [T] [thread 5276] [38.0] [cxt 0] Action MyIngress.drop
+[21:42:00.412] [bmv2] [T] [thread 5276] [38.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:00.412] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Pipeline 'ingress': end
+[21:42:00.412] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Egress port is 511
+[21:42:00.412] [bmv2] [D] [thread 5276] [38.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:00.449] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Processing packet received on port 2
+[21:42:00.449] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Parser 'parser': start
+[21:42:00.449] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:00.450] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:00.450] [bmv2] [T] [thread 5276] [39.0] [cxt 0] Bytes parsed: 0
+[21:42:00.450] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Parser 'parser': end
+[21:42:00.450] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Pipeline 'ingress': start
+[21:42:00.450] [bmv2] [T] [thread 5276] [39.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:00.450] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:00.451] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:00.451] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:00.451] [bmv2] [T] [thread 5276] [39.0] [cxt 0] Action MyIngress.drop
+[21:42:00.451] [bmv2] [T] [thread 5276] [39.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:00.451] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Pipeline 'ingress': end
+[21:42:00.451] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Egress port is 511
+[21:42:00.451] [bmv2] [D] [thread 5276] [39.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:00.671] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Processing packet received on port 1
+[21:42:00.671] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Parser 'parser': start
+[21:42:00.671] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:00.671] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:00.672] [bmv2] [T] [thread 5276] [40.0] [cxt 0] Bytes parsed: 0
+[21:42:00.672] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Parser 'parser': end
+[21:42:00.672] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Pipeline 'ingress': start
+[21:42:00.672] [bmv2] [T] [thread 5276] [40.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:00.672] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:00.672] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:00.672] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:00.672] [bmv2] [T] [thread 5276] [40.0] [cxt 0] Action MyIngress.drop
+[21:42:00.673] [bmv2] [T] [thread 5276] [40.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:00.673] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Pipeline 'ingress': end
+[21:42:00.673] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Egress port is 511
+[21:42:00.673] [bmv2] [D] [thread 5276] [40.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:00.712] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Processing packet received on port 1
+[21:42:00.712] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Parser 'parser': start
+[21:42:00.712] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:00.712] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:00.713] [bmv2] [T] [thread 5276] [41.0] [cxt 0] Bytes parsed: 0
+[21:42:00.713] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Parser 'parser': end
+[21:42:00.713] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Pipeline 'ingress': start
+[21:42:00.713] [bmv2] [T] [thread 5276] [41.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:00.713] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:00.713] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:00.714] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:00.714] [bmv2] [T] [thread 5276] [41.0] [cxt 0] Action MyIngress.drop
+[21:42:00.714] [bmv2] [T] [thread 5276] [41.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:00.714] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Pipeline 'ingress': end
+[21:42:00.714] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Egress port is 511
+[21:42:00.714] [bmv2] [D] [thread 5276] [41.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:00.740] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Processing packet received on port 3
+[21:42:00.740] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Parser 'parser': start
+[21:42:00.740] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:00.740] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:00.741] [bmv2] [T] [thread 5276] [42.0] [cxt 0] Bytes parsed: 0
+[21:42:00.741] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Parser 'parser': end
+[21:42:00.741] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Pipeline 'ingress': start
+[21:42:00.741] [bmv2] [T] [thread 5276] [42.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:00.741] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:00.741] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:00.741] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:00.742] [bmv2] [T] [thread 5276] [42.0] [cxt 0] Action MyIngress.drop
+[21:42:00.742] [bmv2] [T] [thread 5276] [42.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:00.742] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Pipeline 'ingress': end
+[21:42:00.742] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Egress port is 511
+[21:42:00.742] [bmv2] [D] [thread 5276] [42.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:00.785] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Processing packet received on port 3
+[21:42:00.785] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Parser 'parser': start
+[21:42:00.785] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:00.785] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:00.785] [bmv2] [T] [thread 5276] [43.0] [cxt 0] Bytes parsed: 0
+[21:42:00.785] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Parser 'parser': end
+[21:42:00.786] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Pipeline 'ingress': start
+[21:42:00.786] [bmv2] [T] [thread 5276] [43.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:00.786] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:00.786] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:00.787] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:00.787] [bmv2] [T] [thread 5276] [43.0] [cxt 0] Action MyIngress.drop
+[21:42:00.787] [bmv2] [T] [thread 5276] [43.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:00.787] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Pipeline 'ingress': end
+[21:42:00.787] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Egress port is 511
+[21:42:00.788] [bmv2] [D] [thread 5276] [43.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:03.089] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Processing packet received on port 3
+[21:42:03.089] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Parser 'parser': start
+[21:42:03.089] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:03.090] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:03.090] [bmv2] [T] [thread 5276] [44.0] [cxt 0] Bytes parsed: 0
+[21:42:03.090] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Parser 'parser': end
+[21:42:03.090] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Pipeline 'ingress': start
+[21:42:03.090] [bmv2] [T] [thread 5276] [44.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:03.090] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:03.091] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:03.091] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:03.091] [bmv2] [T] [thread 5276] [44.0] [cxt 0] Action MyIngress.drop
+[21:42:03.091] [bmv2] [T] [thread 5276] [44.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:03.091] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Pipeline 'ingress': end
+[21:42:03.091] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Egress port is 511
+[21:42:03.091] [bmv2] [D] [thread 5276] [44.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:03.130] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Processing packet received on port 2
+[21:42:03.130] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Parser 'parser': start
+[21:42:03.130] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:03.130] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:03.130] [bmv2] [T] [thread 5276] [45.0] [cxt 0] Bytes parsed: 0
+[21:42:03.131] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Parser 'parser': end
+[21:42:03.131] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Pipeline 'ingress': start
+[21:42:03.131] [bmv2] [T] [thread 5276] [45.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:03.131] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:03.131] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:03.132] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:03.132] [bmv2] [T] [thread 5276] [45.0] [cxt 0] Action MyIngress.drop
+[21:42:03.132] [bmv2] [T] [thread 5276] [45.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:03.132] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Pipeline 'ingress': end
+[21:42:03.132] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Egress port is 511
+[21:42:03.132] [bmv2] [D] [thread 5276] [45.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:03.559] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Processing packet received on port 2
+[21:42:03.559] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Parser 'parser': start
+[21:42:03.559] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:03.559] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:03.559] [bmv2] [T] [thread 5276] [46.0] [cxt 0] Bytes parsed: 0
+[21:42:03.559] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Parser 'parser': end
+[21:42:03.559] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Pipeline 'ingress': start
+[21:42:03.560] [bmv2] [T] [thread 5276] [46.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:03.560] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:03.560] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:03.560] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:03.560] [bmv2] [T] [thread 5276] [46.0] [cxt 0] Action MyIngress.drop
+[21:42:03.560] [bmv2] [T] [thread 5276] [46.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:03.560] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Pipeline 'ingress': end
+[21:42:03.561] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Egress port is 511
+[21:42:03.561] [bmv2] [D] [thread 5276] [46.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:03.814] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Processing packet received on port 1
+[21:42:03.814] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Parser 'parser': start
+[21:42:03.814] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:03.814] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:03.814] [bmv2] [T] [thread 5276] [47.0] [cxt 0] Bytes parsed: 0
+[21:42:03.815] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Parser 'parser': end
+[21:42:03.815] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Pipeline 'ingress': start
+[21:42:03.815] [bmv2] [T] [thread 5276] [47.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:03.815] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:03.815] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:03.815] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:03.815] [bmv2] [T] [thread 5276] [47.0] [cxt 0] Action MyIngress.drop
+[21:42:03.816] [bmv2] [T] [thread 5276] [47.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:03.816] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Pipeline 'ingress': end
+[21:42:03.816] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Egress port is 511
+[21:42:03.816] [bmv2] [D] [thread 5276] [47.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:03.879] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Processing packet received on port 3
+[21:42:03.879] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Parser 'parser': start
+[21:42:03.879] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:03.880] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:03.880] [bmv2] [T] [thread 5276] [48.0] [cxt 0] Bytes parsed: 0
+[21:42:03.880] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Parser 'parser': end
+[21:42:03.880] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Pipeline 'ingress': start
+[21:42:03.880] [bmv2] [T] [thread 5276] [48.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:03.880] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:03.880] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:03.881] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:03.881] [bmv2] [T] [thread 5276] [48.0] [cxt 0] Action MyIngress.drop
+[21:42:03.881] [bmv2] [T] [thread 5276] [48.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:03.881] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Pipeline 'ingress': end
+[21:42:03.881] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Egress port is 511
+[21:42:03.881] [bmv2] [D] [thread 5276] [48.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:03.993] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Processing packet received on port 3
+[21:42:03.994] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Parser 'parser': start
+[21:42:03.994] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:03.994] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:03.994] [bmv2] [T] [thread 5276] [49.0] [cxt 0] Bytes parsed: 0
+[21:42:03.994] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Parser 'parser': end
+[21:42:03.994] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Pipeline 'ingress': start
+[21:42:03.995] [bmv2] [T] [thread 5276] [49.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:03.995] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:03.995] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:03.995] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:03.995] [bmv2] [T] [thread 5276] [49.0] [cxt 0] Action MyIngress.drop
+[21:42:03.996] [bmv2] [T] [thread 5276] [49.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:03.996] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Pipeline 'ingress': end
+[21:42:03.996] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Egress port is 511
+[21:42:03.996] [bmv2] [D] [thread 5276] [49.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:04.027] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Processing packet received on port 2
+[21:42:04.028] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Parser 'parser': start
+[21:42:04.028] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:04.028] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:04.029] [bmv2] [T] [thread 5276] [50.0] [cxt 0] Bytes parsed: 0
+[21:42:04.029] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Parser 'parser': end
+[21:42:04.029] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Pipeline 'ingress': start
+[21:42:04.029] [bmv2] [T] [thread 5276] [50.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:04.029] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:04.029] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:04.029] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:04.029] [bmv2] [T] [thread 5276] [50.0] [cxt 0] Action MyIngress.drop
+[21:42:04.029] [bmv2] [T] [thread 5276] [50.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:04.030] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Pipeline 'ingress': end
+[21:42:04.030] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Egress port is 511
+[21:42:04.030] [bmv2] [D] [thread 5276] [50.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:04.456] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Processing packet received on port 2
+[21:42:04.457] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Parser 'parser': start
+[21:42:04.457] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:04.457] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:04.457] [bmv2] [T] [thread 5276] [51.0] [cxt 0] Bytes parsed: 0
+[21:42:04.457] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Parser 'parser': end
+[21:42:04.457] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Pipeline 'ingress': start
+[21:42:04.457] [bmv2] [T] [thread 5276] [51.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:04.458] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:04.458] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:04.458] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:04.458] [bmv2] [T] [thread 5276] [51.0] [cxt 0] Action MyIngress.drop
+[21:42:04.458] [bmv2] [T] [thread 5276] [51.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:04.458] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Pipeline 'ingress': end
+[21:42:04.458] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Egress port is 511
+[21:42:04.458] [bmv2] [D] [thread 5276] [51.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:04.721] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Processing packet received on port 1
+[21:42:04.721] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Parser 'parser': start
+[21:42:04.721] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:04.722] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:04.722] [bmv2] [T] [thread 5276] [52.0] [cxt 0] Bytes parsed: 0
+[21:42:04.722] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Parser 'parser': end
+[21:42:04.723] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Pipeline 'ingress': start
+[21:42:04.723] [bmv2] [T] [thread 5276] [52.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:04.723] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:04.724] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:04.724] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:04.724] [bmv2] [T] [thread 5276] [52.0] [cxt 0] Action MyIngress.drop
+[21:42:04.725] [bmv2] [T] [thread 5276] [52.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:04.725] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Pipeline 'ingress': end
+[21:42:04.725] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Egress port is 511
+[21:42:04.726] [bmv2] [D] [thread 5276] [52.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:04.797] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Processing packet received on port 3
+[21:42:04.797] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Parser 'parser': start
+[21:42:04.797] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:04.798] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:04.798] [bmv2] [T] [thread 5276] [53.0] [cxt 0] Bytes parsed: 0
+[21:42:04.798] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Parser 'parser': end
+[21:42:04.799] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Pipeline 'ingress': start
+[21:42:04.799] [bmv2] [T] [thread 5276] [53.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:04.799] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:04.800] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:04.800] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:04.800] [bmv2] [T] [thread 5276] [53.0] [cxt 0] Action MyIngress.drop
+[21:42:04.800] [bmv2] [T] [thread 5276] [53.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:04.800] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Pipeline 'ingress': end
+[21:42:04.800] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Egress port is 511
+[21:42:04.800] [bmv2] [D] [thread 5276] [53.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:11.093] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Processing packet received on port 3
+[21:42:11.093] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Parser 'parser': start
+[21:42:11.093] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:11.093] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:11.094] [bmv2] [T] [thread 5276] [54.0] [cxt 0] Bytes parsed: 0
+[21:42:11.094] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Parser 'parser': end
+[21:42:11.094] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Pipeline 'ingress': start
+[21:42:11.094] [bmv2] [T] [thread 5276] [54.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:11.094] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:11.094] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:11.095] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:11.095] [bmv2] [T] [thread 5276] [54.0] [cxt 0] Action MyIngress.drop
+[21:42:11.095] [bmv2] [T] [thread 5276] [54.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:11.095] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Pipeline 'ingress': end
+[21:42:11.095] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Egress port is 511
+[21:42:11.095] [bmv2] [D] [thread 5276] [54.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:11.131] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Processing packet received on port 2
+[21:42:11.131] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Parser 'parser': start
+[21:42:11.131] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:11.131] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:11.132] [bmv2] [T] [thread 5276] [55.0] [cxt 0] Bytes parsed: 0
+[21:42:11.132] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Parser 'parser': end
+[21:42:11.132] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Pipeline 'ingress': start
+[21:42:11.132] [bmv2] [T] [thread 5276] [55.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:11.132] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:11.132] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:11.132] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:11.133] [bmv2] [T] [thread 5276] [55.0] [cxt 0] Action MyIngress.drop
+[21:42:11.133] [bmv2] [T] [thread 5276] [55.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:11.133] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Pipeline 'ingress': end
+[21:42:11.133] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Egress port is 511
+[21:42:11.133] [bmv2] [D] [thread 5276] [55.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:11.553] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Processing packet received on port 2
+[21:42:11.553] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Parser 'parser': start
+[21:42:11.553] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:11.553] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:11.554] [bmv2] [T] [thread 5276] [56.0] [cxt 0] Bytes parsed: 0
+[21:42:11.554] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Parser 'parser': end
+[21:42:11.554] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Pipeline 'ingress': start
+[21:42:11.554] [bmv2] [T] [thread 5276] [56.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:11.554] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:11.554] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:11.554] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:11.554] [bmv2] [T] [thread 5276] [56.0] [cxt 0] Action MyIngress.drop
+[21:42:11.554] [bmv2] [T] [thread 5276] [56.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:11.555] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Pipeline 'ingress': end
+[21:42:11.555] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Egress port is 511
+[21:42:11.555] [bmv2] [D] [thread 5276] [56.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:11.810] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Processing packet received on port 1
+[21:42:11.810] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Parser 'parser': start
+[21:42:11.811] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:11.811] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:11.811] [bmv2] [T] [thread 5276] [57.0] [cxt 0] Bytes parsed: 0
+[21:42:11.811] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Parser 'parser': end
+[21:42:11.811] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Pipeline 'ingress': start
+[21:42:11.811] [bmv2] [T] [thread 5276] [57.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:11.812] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:11.812] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:11.812] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:11.812] [bmv2] [T] [thread 5276] [57.0] [cxt 0] Action MyIngress.drop
+[21:42:11.812] [bmv2] [T] [thread 5276] [57.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:11.812] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Pipeline 'ingress': end
+[21:42:11.812] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Egress port is 511
+[21:42:11.812] [bmv2] [D] [thread 5276] [57.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:11.879] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Processing packet received on port 3
+[21:42:11.879] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Parser 'parser': start
+[21:42:11.880] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:11.880] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:11.880] [bmv2] [T] [thread 5276] [58.0] [cxt 0] Bytes parsed: 0
+[21:42:11.880] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Parser 'parser': end
+[21:42:11.880] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Pipeline 'ingress': start
+[21:42:11.881] [bmv2] [T] [thread 5276] [58.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:11.881] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:11.881] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:11.881] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:11.881] [bmv2] [T] [thread 5276] [58.0] [cxt 0] Action MyIngress.drop
+[21:42:11.881] [bmv2] [T] [thread 5276] [58.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:11.882] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Pipeline 'ingress': end
+[21:42:11.882] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Egress port is 511
+[21:42:11.882] [bmv2] [D] [thread 5276] [58.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:27.116] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Processing packet received on port 3
+[21:42:27.116] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Parser 'parser': start
+[21:42:27.116] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:27.117] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:27.117] [bmv2] [T] [thread 5276] [59.0] [cxt 0] Bytes parsed: 0
+[21:42:27.117] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Parser 'parser': end
+[21:42:27.118] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Pipeline 'ingress': start
+[21:42:27.118] [bmv2] [T] [thread 5276] [59.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:27.118] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:27.119] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:27.119] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:27.119] [bmv2] [T] [thread 5276] [59.0] [cxt 0] Action MyIngress.drop
+[21:42:27.120] [bmv2] [T] [thread 5276] [59.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:27.120] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Pipeline 'ingress': end
+[21:42:27.120] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Egress port is 511
+[21:42:27.120] [bmv2] [D] [thread 5276] [59.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:27.136] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Processing packet received on port 2
+[21:42:27.137] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Parser 'parser': start
+[21:42:27.137] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:27.137] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:27.137] [bmv2] [T] [thread 5276] [60.0] [cxt 0] Bytes parsed: 0
+[21:42:27.137] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Parser 'parser': end
+[21:42:27.138] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Pipeline 'ingress': start
+[21:42:27.138] [bmv2] [T] [thread 5276] [60.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:27.138] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:27.138] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:27.138] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:27.139] [bmv2] [T] [thread 5276] [60.0] [cxt 0] Action MyIngress.drop
+[21:42:27.139] [bmv2] [T] [thread 5276] [60.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:27.139] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Pipeline 'ingress': end
+[21:42:27.139] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Egress port is 511
+[21:42:27.139] [bmv2] [D] [thread 5276] [60.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:27.560] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Processing packet received on port 2
+[21:42:27.560] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Parser 'parser': start
+[21:42:27.560] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:27.560] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:27.560] [bmv2] [T] [thread 5276] [61.0] [cxt 0] Bytes parsed: 0
+[21:42:27.560] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Parser 'parser': end
+[21:42:27.560] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Pipeline 'ingress': start
+[21:42:27.561] [bmv2] [T] [thread 5276] [61.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:27.561] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:27.561] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:27.561] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:27.561] [bmv2] [T] [thread 5276] [61.0] [cxt 0] Action MyIngress.drop
+[21:42:27.561] [bmv2] [T] [thread 5276] [61.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:27.561] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Pipeline 'ingress': end
+[21:42:27.561] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Egress port is 511
+[21:42:27.561] [bmv2] [D] [thread 5276] [61.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:27.812] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Processing packet received on port 1
+[21:42:27.812] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Parser 'parser': start
+[21:42:27.812] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:27.813] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:27.813] [bmv2] [T] [thread 5276] [62.0] [cxt 0] Bytes parsed: 0
+[21:42:27.813] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Parser 'parser': end
+[21:42:27.814] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Pipeline 'ingress': start
+[21:42:27.814] [bmv2] [T] [thread 5276] [62.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:27.815] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:27.815] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:27.815] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:27.816] [bmv2] [T] [thread 5276] [62.0] [cxt 0] Action MyIngress.drop
+[21:42:27.816] [bmv2] [T] [thread 5276] [62.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:27.816] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Pipeline 'ingress': end
+[21:42:27.817] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Egress port is 511
+[21:42:27.817] [bmv2] [D] [thread 5276] [62.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:27.888] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Processing packet received on port 3
+[21:42:27.888] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Parser 'parser': start
+[21:42:27.888] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:27.889] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:27.889] [bmv2] [T] [thread 5276] [63.0] [cxt 0] Bytes parsed: 0
+[21:42:27.889] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Parser 'parser': end
+[21:42:27.889] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Pipeline 'ingress': start
+[21:42:27.889] [bmv2] [T] [thread 5276] [63.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:27.889] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:27.890] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:27.890] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:27.890] [bmv2] [T] [thread 5276] [63.0] [cxt 0] Action MyIngress.drop
+[21:42:27.890] [bmv2] [T] [thread 5276] [63.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:27.890] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Pipeline 'ingress': end
+[21:42:27.890] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Egress port is 511
+[21:42:27.890] [bmv2] [D] [thread 5276] [63.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:59.128] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Processing packet received on port 3
+[21:42:59.129] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Parser 'parser': start
+[21:42:59.129] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:59.129] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:59.130] [bmv2] [T] [thread 5276] [64.0] [cxt 0] Bytes parsed: 0
+[21:42:59.130] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Parser 'parser': end
+[21:42:59.130] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Pipeline 'ingress': start
+[21:42:59.131] [bmv2] [T] [thread 5276] [64.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:59.131] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:59.131] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:59.131] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:59.132] [bmv2] [T] [thread 5276] [64.0] [cxt 0] Action MyIngress.drop
+[21:42:59.132] [bmv2] [T] [thread 5276] [64.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:59.132] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Pipeline 'ingress': end
+[21:42:59.132] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Egress port is 511
+[21:42:59.132] [bmv2] [D] [thread 5276] [64.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:59.140] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Processing packet received on port 2
+[21:42:59.140] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Parser 'parser': start
+[21:42:59.140] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:59.140] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:59.141] [bmv2] [T] [thread 5276] [65.0] [cxt 0] Bytes parsed: 0
+[21:42:59.141] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Parser 'parser': end
+[21:42:59.141] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Pipeline 'ingress': start
+[21:42:59.141] [bmv2] [T] [thread 5276] [65.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:59.142] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:59.142] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:59.142] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:59.142] [bmv2] [T] [thread 5276] [65.0] [cxt 0] Action MyIngress.drop
+[21:42:59.142] [bmv2] [T] [thread 5276] [65.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:59.142] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Pipeline 'ingress': end
+[21:42:59.142] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Egress port is 511
+[21:42:59.143] [bmv2] [D] [thread 5276] [65.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:59.553] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Processing packet received on port 2
+[21:42:59.553] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Parser 'parser': start
+[21:42:59.553] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:59.553] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:59.553] [bmv2] [T] [thread 5276] [66.0] [cxt 0] Bytes parsed: 0
+[21:42:59.553] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Parser 'parser': end
+[21:42:59.554] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Pipeline 'ingress': start
+[21:42:59.554] [bmv2] [T] [thread 5276] [66.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:59.554] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:59.554] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:59.554] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:59.554] [bmv2] [T] [thread 5276] [66.0] [cxt 0] Action MyIngress.drop
+[21:42:59.554] [bmv2] [T] [thread 5276] [66.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:59.554] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Pipeline 'ingress': end
+[21:42:59.554] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Egress port is 511
+[21:42:59.554] [bmv2] [D] [thread 5276] [66.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:59.812] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Processing packet received on port 1
+[21:42:59.812] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Parser 'parser': start
+[21:42:59.812] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:59.813] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:59.813] [bmv2] [T] [thread 5276] [67.0] [cxt 0] Bytes parsed: 0
+[21:42:59.813] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Parser 'parser': end
+[21:42:59.813] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Pipeline 'ingress': start
+[21:42:59.813] [bmv2] [T] [thread 5276] [67.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:59.813] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:59.814] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:59.814] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:59.814] [bmv2] [T] [thread 5276] [67.0] [cxt 0] Action MyIngress.drop
+[21:42:59.814] [bmv2] [T] [thread 5276] [67.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:59.814] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Pipeline 'ingress': end
+[21:42:59.814] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Egress port is 511
+[21:42:59.814] [bmv2] [D] [thread 5276] [67.0] [cxt 0] Dropping packet at the end of ingress
+[21:42:59.892] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Processing packet received on port 3
+[21:42:59.892] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Parser 'parser': start
+[21:42:59.892] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:42:59.892] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:42:59.892] [bmv2] [T] [thread 5276] [68.0] [cxt 0] Bytes parsed: 0
+[21:42:59.892] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Parser 'parser': end
+[21:42:59.893] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Pipeline 'ingress': start
+[21:42:59.893] [bmv2] [T] [thread 5276] [68.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:42:59.893] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:42:59.893] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:42:59.893] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:42:59.893] [bmv2] [T] [thread 5276] [68.0] [cxt 0] Action MyIngress.drop
+[21:42:59.893] [bmv2] [T] [thread 5276] [68.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:42:59.894] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Pipeline 'ingress': end
+[21:42:59.894] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Egress port is 511
+[21:42:59.894] [bmv2] [D] [thread 5276] [68.0] [cxt 0] Dropping packet at the end of ingress
+[21:44:03.113] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Processing packet received on port 3
+[21:44:03.113] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Parser 'parser': start
+[21:44:03.113] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:44:03.113] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:44:03.113] [bmv2] [T] [thread 5276] [69.0] [cxt 0] Bytes parsed: 0
+[21:44:03.114] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Parser 'parser': end
+[21:44:03.114] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Pipeline 'ingress': start
+[21:44:03.114] [bmv2] [T] [thread 5276] [69.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:44:03.114] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:44:03.114] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:44:03.114] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:44:03.115] [bmv2] [T] [thread 5276] [69.0] [cxt 0] Action MyIngress.drop
+[21:44:03.115] [bmv2] [T] [thread 5276] [69.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:44:03.115] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Pipeline 'ingress': end
+[21:44:03.115] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Egress port is 511
+[21:44:03.115] [bmv2] [D] [thread 5276] [69.0] [cxt 0] Dropping packet at the end of ingress
+[21:44:03.139] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Processing packet received on port 2
+[21:44:03.140] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Parser 'parser': start
+[21:44:03.140] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:44:03.140] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:44:03.141] [bmv2] [T] [thread 5276] [70.0] [cxt 0] Bytes parsed: 0
+[21:44:03.141] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Parser 'parser': end
+[21:44:03.141] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Pipeline 'ingress': start
+[21:44:03.141] [bmv2] [T] [thread 5276] [70.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:44:03.142] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:44:03.142] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:44:03.142] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:44:03.142] [bmv2] [T] [thread 5276] [70.0] [cxt 0] Action MyIngress.drop
+[21:44:03.142] [bmv2] [T] [thread 5276] [70.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:44:03.143] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Pipeline 'ingress': end
+[21:44:03.143] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Egress port is 511
+[21:44:03.143] [bmv2] [D] [thread 5276] [70.0] [cxt 0] Dropping packet at the end of ingress
+[21:44:03.554] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Processing packet received on port 2
+[21:44:03.554] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Parser 'parser': start
+[21:44:03.554] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:44:03.555] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:44:03.555] [bmv2] [T] [thread 5276] [71.0] [cxt 0] Bytes parsed: 0
+[21:44:03.555] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Parser 'parser': end
+[21:44:03.555] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Pipeline 'ingress': start
+[21:44:03.555] [bmv2] [T] [thread 5276] [71.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:44:03.555] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:44:03.555] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:44:03.556] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:44:03.556] [bmv2] [T] [thread 5276] [71.0] [cxt 0] Action MyIngress.drop
+[21:44:03.556] [bmv2] [T] [thread 5276] [71.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:44:03.556] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Pipeline 'ingress': end
+[21:44:03.556] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Egress port is 511
+[21:44:03.556] [bmv2] [D] [thread 5276] [71.0] [cxt 0] Dropping packet at the end of ingress
+[21:44:03.814] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Processing packet received on port 1
+[21:44:03.814] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Parser 'parser': start
+[21:44:03.814] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:44:03.814] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:44:03.814] [bmv2] [T] [thread 5276] [72.0] [cxt 0] Bytes parsed: 0
+[21:44:03.815] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Parser 'parser': end
+[21:44:03.815] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Pipeline 'ingress': start
+[21:44:03.815] [bmv2] [T] [thread 5276] [72.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:44:03.815] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:44:03.815] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:44:03.815] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:44:03.815] [bmv2] [T] [thread 5276] [72.0] [cxt 0] Action MyIngress.drop
+[21:44:03.815] [bmv2] [T] [thread 5276] [72.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:44:03.815] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Pipeline 'ingress': end
+[21:44:03.816] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Egress port is 511
+[21:44:03.816] [bmv2] [D] [thread 5276] [72.0] [cxt 0] Dropping packet at the end of ingress
+[21:44:03.890] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Processing packet received on port 3
+[21:44:03.890] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Parser 'parser': start
+[21:44:03.890] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Parser 'parser' entering state 'start'
+[21:44:03.891] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Parser state 'start' has no switch, going to default next state
+[21:44:03.891] [bmv2] [T] [thread 5276] [73.0] [cxt 0] Bytes parsed: 0
+[21:44:03.891] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Parser 'parser': end
+[21:44:03.891] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Pipeline 'ingress': start
+[21:44:03.892] [bmv2] [T] [thread 5276] [73.0] [cxt 0] Applying table 'MyIngress.ipv4_lpm'
+[21:44:03.892] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Looking up key:
+* hdr.ipv4.dstAddr    : 00000000
+
+[21:44:03.892] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Table 'MyIngress.ipv4_lpm': miss
+[21:44:03.892] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Action entry is MyIngress.drop - 
+[21:44:03.892] [bmv2] [T] [thread 5276] [73.0] [cxt 0] Action MyIngress.drop
+[21:44:03.893] [bmv2] [T] [thread 5276] [73.0] [cxt 0] basic.p4(82) Primitive mark_to_drop(standard_metadata)
+[21:44:03.893] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Pipeline 'ingress': end
+[21:44:03.893] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Egress port is 511
+[21:44:03.893] [bmv2] [D] [thread 5276] [73.0] [cxt 0] Dropping packet at the end of ingress
+open: No such file or directory
+open: No such file or directory
+open: No such file or directory
