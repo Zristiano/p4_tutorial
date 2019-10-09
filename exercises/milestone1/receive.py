@@ -8,6 +8,7 @@ from scapy.all import Packet, IPOption
 from scapy.all import ShortField, IntField, LongField, BitField, FieldListField, FieldLenField
 from scapy.all import IP, TCP, UDP, Raw
 from scapy.layers.inet import _IPOption_HDR
+from send import ECMP
 
 def get_if():
     ifs=get_if_list()
@@ -34,7 +35,7 @@ class IPOption_MRI(IPOption):
                                    IntField("", 0),
                                    length_from=lambda pkt:pkt.count*4) ]
 def handle_pkt(pkt):
-    if TCP in pkt and pkt[TCP].dport == 1234:
+    if ECMP in pkt or (TCP in pkt and pkt[TCP].dport == 1234):
         print "got a packet"
         pkt.show2()
     #    hexdump(pkt)
