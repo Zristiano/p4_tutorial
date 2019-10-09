@@ -114,16 +114,6 @@ control MyIngress(inout headers hdr,
         hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
     }
 
-    action load_balance() {
-        meta.route = 1;
-        hdr.ecmp.enable = 0;
-        route_exact.apply();
-    }
-
-    action ipv4_routing(){
-        ipv4_lpm.apply();
-    }
-    
     table ipv4_lpm {
         key = {
             hdr.ipv4.dstAddr: lpm;
@@ -137,13 +127,12 @@ control MyIngress(inout headers hdr,
         default_action = drop();
     }
 
-    table ecmp_exact {
+    table route_exact {
         key = {
-            hdr.ecmp.enable: exact;
+            meta.route: exact;
         }
         actions = {
-            load_balance;
-            ipv4_routing;
+            ipv4_forward;
             drop;
             NoAction;
         }
@@ -151,12 +140,25 @@ control MyIngress(inout headers hdr,
         default_action = drop();
     }
 
-    table route_exact {
+    action load_balance() {
+        meta.route = 1;
+        hdr.ecmp.enable = 0;
+        route_exact.apply();
+    }
+
+    action ipv4_routing(){
+        ipv4_lpm.apply();
+    }
+    
+    
+
+    table ecmp_exact {
         key = {
-            meta.route: exact;
+            hdr.ecmp.enable: exact;
         }
         actions = {
-            ipv4_forward;
+            load_balance;
+            ipv4_routing;
             drop;
             NoAction;
         }
