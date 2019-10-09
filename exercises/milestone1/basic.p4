@@ -3,6 +3,7 @@
 #include <v1model.p4>
 
 const bit<16> TYPE_IPV4 = 0x800;
+const bit<16> TYPE_ECMP = 0x888;
 
 /*************************************************************************
 *********************** H E A D E R S  ***********************************
@@ -16,6 +17,11 @@ header ethernet_t {
     macAddr_t dstAddr;
     macAddr_t srcAddr;
     bit<16>   etherType;
+}
+
+header ecmp_t {
+    bit<16> enable;
+    bit<16> prot_id;
 }
 
 header ipv4_t {
@@ -34,12 +40,14 @@ header ipv4_t {
 }
 
 struct metadata {
+    bit<8> route
     /* empty */
 }
 
 struct headers {
-    ethernet_t   ethernet;
-    ipv4_t       ipv4;
+    ethernet_t  ethernet;
+    ecmp_t  ecmp;
+    ipv4_t  ipv4;
 }
 
 /*************************************************************************
@@ -58,6 +66,15 @@ parser MyParser(packet_in packet,
     state parse_ethernet {
         packet.extract(hdr.ethernet);
         transition select(hdr.ethernet.etherType) {
+            TYPE_IPV4: parse_ipv4;
+            TYPE_ECMP: parse_ecmp;
+            default: accept;
+        }
+    }
+
+    state parse_ecmp {
+        packet.extract(hdr.ecmp);
+        transition select(hdr.ecmp.prot_id) {
             TYPE_IPV4: parse_ipv4;
             default: accept;
         }
@@ -96,6 +113,16 @@ control MyIngress(inout headers hdr,
         hdr.ethernet.dstAddr = dstAddr;
         hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
     }
+
+    action load_balance() {
+        meta.route = 1;
+        hdr.ecmp.enable = 0;
+        route_exact.apply();
+    }
+
+    action ipv4_routing(){
+        ipv4_lpm.apply();
+    }
     
     table ipv4_lpm {
         key = {
@@ -109,9 +136,43 @@ control MyIngress(inout headers hdr,
         size = 1024;
         default_action = drop();
     }
+
+    table ecmp_exact {
+        key = {
+            hdr.ecmp.enable: exact;
+        }
+        actions = {
+            load_balance;
+            ipv4_routing;
+            drop;
+            NoAction;
+        }
+        size = 1024;
+        default_action = drop();
+    }
+
+    table route_exact {
+        key = {
+            meta.route: exact;
+        }
+        action = route{
+            ipv4_forward;
+            drop;
+            NoAction;
+        }
+        size = 1024;
+        default_action = drop();
+    }
     
     apply {
-        if (hdr.ipv4.isValid()) {
+
+        if (hdr.ecmp.isValid() && hdr.ipv4.isValid()) {
+            // process ecmp load balance
+            ecmp_exact.apply();
+        }
+
+        if (!hdr.ecmp.isValid() && hdr.ipv4.isValid()) {
+            // perform ip protocol directly
             ipv4_lpm.apply();
         }
     }
@@ -158,6 +219,7 @@ control MyComputeChecksum(inout headers  hdr, inout metadata meta) {
 control MyDeparser(packet_out packet, in headers hdr) {
     apply {
         packet.emit(hdr.ethernet);
+        packet.emit(hdr.ecmp);
         packet.emit(hdr.ipv4);
     }
 }
