@@ -19,6 +19,14 @@
         "dstAddr": "00:00:00:04:02:00",
         "port": 2
       }
+    },
+    {
+      "table": "MyIngress.ecmp_exact",
+      "match": {
+        "hdr.ecmp.enable": [0]
+      },
+      "action_name": "MyIngress.do_nothing",
+      "action_params": {}
     }
     
   ]

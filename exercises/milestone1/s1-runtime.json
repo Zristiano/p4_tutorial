@@ -19,6 +19,44 @@
         "dstAddr": "00:00:00:02:01:00",
         "port": 2
       }
+    },
+    {
+      "table": "MyIngress.ecmp_exact",
+      "match": {
+        "hdr.ecmp.enable": [1]
+      },
+      "action_name": "MyIngress.load_balance",
+      "action_params": {}
+    },
+    {
+      "table": "MyIngress.ecmp_exact",
+      "match": {
+        "hdr.ecmp.enable": [0]
+      },
+      "action_name": "MyIngress.do_nothing",
+      "action_params": {}
+    },
+    {
+      "table": "MyIngress.route_exact",
+      "match": {
+        "meta.route": [1]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:02:01:00",
+        "port": 2
+      }
+    },
+    {
+      "table": "MyIngress.route_exact",
+      "match": {
+        "meta.route": [0]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:03:01:00",
+        "port": 3
+      }
     }
   ]
 }
