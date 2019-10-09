@@ -167,13 +167,14 @@ control MyIngress(inout headers hdr,
 
         if (hdr.ecmp.isValid()) {
             // process ecmp load balance
-            ecmp_exact.apply();
-            if(hdr.ecmp.enable==1){
-                route_exact.apply();
-                hdr.ecmp.enable=0;
-            }else{
-                ipv4_lpm.apply();
-            }
+            // ecmp_exact.apply();
+            // if(hdr.ecmp.enable==1){
+            //     route_exact.apply();
+            //     hdr.ecmp.enable=0;
+            // }else{
+            //     ipv4_lpm.apply();
+            // }
+            ipv4_lpm.apply();
         }else if(hdr.ipv4.isValid()) {
             ipv4_lpm.apply();
         }
