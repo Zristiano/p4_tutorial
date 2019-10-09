@@ -155,7 +155,7 @@ control MyIngress(inout headers hdr,
         key = {
             meta.route: exact;
         }
-        action = route{
+        actions = {
             ipv4_forward;
             drop;
             NoAction;
