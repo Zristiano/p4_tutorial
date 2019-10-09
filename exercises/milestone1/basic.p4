@@ -145,7 +145,7 @@ control MyIngress(inout headers hdr,
         hdr.ecmp.enable = 0;
     }
 
-    action doNothing(){
+    action do_nothing(){
 
     }
     
@@ -156,6 +156,7 @@ control MyIngress(inout headers hdr,
         actions = {
             load_balance;
             drop;
+            do_nothing;
             NoAction;
         }
         size = 1024;
