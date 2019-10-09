@@ -144,6 +144,10 @@ control MyIngress(inout headers hdr,
         meta.route = 1;
         hdr.ecmp.enable = 0;
     }
+
+    action doNothing(){
+
+    }
     
     table ecmp_exact {
         key = {
@@ -166,6 +170,8 @@ control MyIngress(inout headers hdr,
             if(hdr.ecmp.enable==1){
                 route_exact.apply();
                 hdr.ecmp.enable=0;
+            }else{
+                ipv4_lpm.apply();
             }
         }else if(hdr.ipv4.isValid()) {
             ipv4_lpm.apply();
