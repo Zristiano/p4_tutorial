@@ -54,8 +54,7 @@ header tcp_t {
 }
 
 struct metadata {
-    bit<8> route;
-    /* empty */
+    bit<14> route;
 }
 
 struct headers {
