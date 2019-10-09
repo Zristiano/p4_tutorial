@@ -40,7 +40,7 @@ header ipv4_t {
 }
 
 struct metadata {
-    bit<8> route
+    bit<8> route;
     /* empty */
 }
 
