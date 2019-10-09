@@ -144,10 +144,6 @@ control MyIngress(inout headers hdr,
         meta.route = 1;
         hdr.ecmp.enable = 0;
     }
-
-    action do_nothing(){
-
-    }
     
     table ecmp_exact {
         key = {
@@ -156,7 +152,6 @@ control MyIngress(inout headers hdr,
         actions = {
             load_balance;
             drop;
-            do_nothing;
             NoAction;
         }
         size = 1024;
@@ -166,21 +161,21 @@ control MyIngress(inout headers hdr,
     apply {
 
         if (hdr.ecmp.isValid()) {
-            if(hdr.ecmp.enable==0){
-                ipv4_lpm.apply();
-            }else{
-                ecmp_exact.apply();
-                route_exact.apply();
-            }
+            // if(hdr.ecmp.enable==0){
+            //     ipv4_lpm.apply();
+            // }else{
+            //     ecmp_exact.apply();
+            //     route_exact.apply();
+            // }
 
             // process ecmp load balance
-            // ecmp_exact.apply();
-            // if(hdr.ecmp.enable==1){
-            //     route_exact.apply();
-            //     hdr.ecmp.enable=0;
-            // }else{
-            //     ipv4_lpm.apply();
-            // }
+            ecmp_exact.apply();
+            if(hdr.ecmp.enable==1){
+                route_exact.apply();
+                hdr.ecmp.enable=0;
+            }else{
+                ipv4_lpm.apply();
+            }
         }else if(hdr.ipv4.isValid()) {
             ipv4_lpm.apply();
         }
