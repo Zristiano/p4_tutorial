@@ -141,7 +141,7 @@ control MyIngress(inout headers hdr,
     }
 
     action load_balance() {
-        meta.route = 1;
+        meta.route = 0;
         // hdr.ecmp.enable = 0;
     }
     
