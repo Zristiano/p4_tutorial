@@ -164,16 +164,16 @@ control MyIngress(inout headers hdr,
     }
 
     action load_balance() {
-        meta.route = 0;
-        // hash(meta.route,
-	    // HashAlgorithm.crc16,
-	    // 0,
-	    // {   hdr.ipv4.srcAddr,
-	    //     hdr.ipv4.dstAddr,
-        //     hdr.ipv4.protocol,
-        //     hdr.tcp.srcPort,
-        //     hdr.tcp.dstPort },
-	    // 2);
+        // meta.route = 0;
+        hash(meta.route,
+	    HashAlgorithm.crc16,
+	    0,
+	    {   hdr.ipv4.srcAddr,
+	        hdr.ipv4.dstAddr,
+            hdr.ipv4.protocol,
+            hdr.tcp.srcPort,
+            hdr.tcp.dstPort },
+	    2);
         // hdr.ecmp.enable = 0;
     }
     
