@@ -143,38 +143,31 @@ control MyIngress(inout headers hdr,
     action load_balance() {
         meta.route = 1;
         hdr.ecmp.enable = 0;
-        route_exact.apply();
-    }
-
-    action ipv4_routing(){
-        ipv4_lpm.apply();
     }
     
-    
-
     table ecmp_exact {
         key = {
             hdr.ecmp.enable: exact;
         }
         actions = {
             load_balance;
-            ipv4_routing;
             drop;
             NoAction;
         }
         size = 1024;
-        default_action = drop();
+        default_action = NoAction();
     }
     
     apply {
 
-        if (hdr.ecmp.isValid() && hdr.ipv4.isValid()) {
+        if (hdr.ecmp.isValid()) {
             // process ecmp load balance
             ecmp_exact.apply();
-        }
-
-        if (!hdr.ecmp.isValid() && hdr.ipv4.isValid()) {
-            // perform ip protocol directly
+            if(hdr.ecmp.enable==1){
+                route_exact.apply();
+                hdr.ecmp.enable=0;
+            }
+        }else if(hdr.ipv4.isValid()) {
             ipv4_lpm.apply();
         }
     }
