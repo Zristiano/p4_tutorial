@@ -14,7 +14,8 @@ class ECMP(Packet):
     name = "ECMP"
     fields_desc = [ 
                     ShortField("enable", 0),
-                    ShortField("prot_id", 0)
+                    ShortField("prot_id", 0),
+                    IntField("pkt_num",0)
                 ]
 bind_layers(Ether, ECMP, type=0x0888)
 bind_layers(ECMP, IP, prot_id=0x0800)
@@ -55,9 +56,9 @@ def main():
 
     print "sending on interface %s to %s" % (iface, str(addr))
     if len(sys.argv)==3:
-        for i in range(100):
+        for i in range(200):
             pkt =  Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff')
-            pkt = pkt / ECMP(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
+            pkt = pkt / ECMP(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(50000,50050)) / sys.argv[2]
             pkt.show2()
             sendp(pkt, iface=iface, verbose=False)
     if len(sys.argv)==2:

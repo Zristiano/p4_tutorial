@@ -23,6 +23,7 @@ header ethernet_t {
 header ecmp_t {
     bit<16> enable;
     bit<16> prot_id;
+    bit<32> pkt_num;
 }
 
 header stats_t {
@@ -189,28 +190,29 @@ control MyIngress(inout headers hdr,
         bit<32> hash_count = 2;     
 
          
-        // per-flow load balance  
+  /*      // per-flow load balance  
         hash(meta.route, HashAlgorithm.crc16, hash_base,
 	        {   hdr.ipv4.srcAddr,
 	            hdr.ipv4.dstAddr,
                 hdr.ipv4.protocol,
                 hdr.tcp.srcPort,
                 hdr.tcp.dstPort }, hash_count);
-        
-/*
+*/
+
         // per-packet load balance
         bit<32> pkt_cnt;
         packet_counter.read(pkt_cnt, (bit<32>)0);
         pkt_cnt = pkt_cnt+1;
         packet_counter.write((bit<32>)0, pkt_cnt);
+        hdr.ecmp.pkt_num = pkt_cnt;
         hash(meta.route, HashAlgorithm.crc16, hash_base,
 	        {   pkt_cnt,
                 hdr.ipv4.srcAddr,
 	            hdr.ipv4.dstAddr,
                 hdr.ipv4.protocol,
                 hdr.tcp.srcPort,
-                hdr.tcp.dstPort }, hash_count);
-*/
+                hdr.tcp.dstPort     }, hash_count);
+
     }
     
     table ecmp_exact {
