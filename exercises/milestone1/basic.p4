@@ -232,6 +232,7 @@ control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
     register<bit<32>>(4) byte_cnt_reg;
+    
     apply{
         if(!hdr.stats.isValid()){
             bit<32> byte_cnt;
