@@ -48,7 +48,7 @@ def main():
 
     if len(sys.argv)<2:
         print 'pass 2 arguments: <destination> "<message>" for communicatin'
-        print 'pass 1 argument: <destination> for packet statistics'
+        print 'pass 1 argument: <destination> for query packet '
         exit(1)
 
     addr = socket.gethostbyname(sys.argv[1])
