@@ -142,6 +142,10 @@ control MyVerifyChecksum(inout headers hdr, inout metadata meta) {
 control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
+
+    register<bit<32>>(1) packet_counter; 
+
+
     action drop() {
         mark_to_drop(standard_metadata);
     }
@@ -182,17 +186,30 @@ control MyIngress(inout headers hdr,
     action load_balance() {
         // meta.route = 0;
         bit<16> hash_base = 0;
-        bit<32> count = 2;
-        hash(meta.route,
-	    HashAlgorithm.crc16,
-	    hash_base,
-	    {   hdr.ipv4.srcAddr,
-	        hdr.ipv4.dstAddr,
-            hdr.ipv4.protocol,
-            hdr.tcp.srcPort,
-            hdr.tcp.dstPort },
-	    count);
-        // hdr.ecmp.enable = 0;
+        bit<32> hash_count = 2;     
+
+         
+        /* // per-flow load balance  
+        hash(meta.route, HashAlgorithm.crc16, hash_base,
+	        {   hdr.ipv4.srcAddr,
+	            hdr.ipv4.dstAddr,
+                hdr.ipv4.protocol,
+                hdr.tcp.srcPort,
+                hdr.tcp.dstPort }, hash_count);
+        */
+        
+        // per-packet load balance
+        bit<32> pkt_cnt;
+        packet_counter.read(pkt_cnt, (bit<32>)0);
+        pkt_cnt = pkt_cnt+1;
+        packet_counter.write((bit<32>)0, pkt_cnt);
+        hash(meta.route, HashAlgorithm.crc16, hash_base,
+	        {   pkt_cnt,
+                hdr.ipv4.srcAddr,
+	            hdr.ipv4.dstAddr,
+                hdr.ipv4.protocol,
+                hdr.tcp.srcPort,
+                hdr.tcp.dstPort }, hash_count);
     }
     
     table ecmp_exact {
