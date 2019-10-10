@@ -232,23 +232,26 @@ control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
     register<bit<32>>(4) byte_cnt_reg;
-    if(!hdr.stats.isValid()){
-        bit<32> byte_cnt;
-        byte_cnt_reg.read(byte_cnt, (bit<32>)standard_metadata.egress_port);
-        byte_cnt = byte_cnt + standard_metadata.packet_length;
-        byte_cnt_reg.write((bit<32>)standard_metadata.egress_port, byte_cnt);
-    }else if(hdr.stats.enable==1){
-        byte_cnt_reg.read(hdr.stats.port2, (bit<32>)2);
-        // byte_cnt_reg.read(hdr.stats.port3, (bit<32>)3);
+    apply{
+        if(!hdr.stats.isValid()){
+            bit<32> byte_cnt;
+            byte_cnt_reg.read(byte_cnt, (bit<32>)standard_metadata.egress_port);
+            byte_cnt = byte_cnt + standard_metadata.packet_length;
+            byte_cnt_reg.write((bit<32>)standard_metadata.egress_port, byte_cnt);
+        }else if(hdr.stats.enable==1){
+            byte_cnt_reg.read(hdr.stats.port2, (bit<32>)2);
+            // byte_cnt_reg.read(hdr.stats.port3, (bit<32>)3);
 
-        bit<32> byte_cnt;
-        byte_cnt_reg.read(byte_cnt, (bit<32>)3);
-        byte_cnt = byte_cnt + standard_metadata.packet_length;
-        byte_cnt_reg.write((bit<32>)3, byte_cnt);
-        hdr.stats.port3 = byte_cnt;
+            bit<32> byte_cnt;
+            byte_cnt_reg.read(byte_cnt, (bit<32>)3);
+            byte_cnt = byte_cnt + standard_metadata.packet_length;
+            byte_cnt_reg.write((bit<32>)3, byte_cnt);
+            hdr.stats.port3 = byte_cnt;
 
-        hdr.stats.enable = 0;
+            hdr.stats.enable = 0;
+        }
     }
+    
 }
 
 /*************************************************************************
