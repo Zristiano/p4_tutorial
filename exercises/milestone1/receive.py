@@ -44,7 +44,7 @@ def handle_pkt(pkt):
         if ECMP in pkt:
             cur_pkt_num = pkt[ECMP].pkt_num
             flow = flowMap[pkt[TCP].sport]
-            if(cur_pkt_num < flow[-1]):
+            if(len(flow)>0 and cur_pkt_num < flow[-1]):
                 outOfOrderMap[pkt[TCP].sport] += 1 
             flowMap[pkt[TCP].sport].append(pkt[ECMP].pkt_num)
         pkt.show2()
