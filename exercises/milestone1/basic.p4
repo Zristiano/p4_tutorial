@@ -247,7 +247,6 @@ control MyEgress(inout headers hdr,
             hdr.stats.enable = 0;
         }
     }
-    
 }
 
 /*************************************************************************

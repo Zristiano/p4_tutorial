@@ -54,13 +54,18 @@ def main():
     iface = get_if()
 
     print "sending on interface %s to %s" % (iface, str(addr))
-    pkt =  Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff')
     if len(sys.argv)==3:
-        pkt = pkt / ECMP(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
+        for i in range(1000)
+            pkt =  Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff')
+            pkt = pkt / ECMP(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
+            pkt.show2()
+            sendp(pkt, iface=iface, verbose=False)
     if len(sys.argv)==2:
+        pkt =  Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff')
         pkt = pkt / STATS(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / 'stats'
-    pkt.show2()
-    sendp(pkt, iface=iface, verbose=False)
+        pkt.show2()
+        sendp(pkt, iface=iface, verbose=False)
+    
 
 
 if __name__ == '__main__':
