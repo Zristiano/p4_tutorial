@@ -10,15 +10,15 @@ from scapy.all import Packet
 from scapy.all import Ether, IP, UDP, TCP, ShortField, IntField
 from scapy.all import bind_layers
 
-class ECMP(Packet):
-    name = "ECMP"
+class FLOWLET(Packet):
+    name = "FLOWLET"
     fields_desc = [ 
                     ShortField("enable", 0),
                     ShortField("prot_id", 0),
                     IntField("pkt_num",0)
                 ]
-bind_layers(Ether, ECMP, type=0x0888)
-bind_layers(ECMP, IP, prot_id=0x0800)
+bind_layers(Ether, FLOWLET, type=0x0888)
+bind_layers(FLOWLET, IP, prot_id=0x0800)
 
 
 class STATS(Packet):

@@ -3,8 +3,10 @@
 #include <v1model.p4>
 
 const bit<16> TYPE_IPV4 = 0x800;
-const bit<16> TYPE_ECMP = 0x888;
+const bit<16> TYPE_FLOWLET = 0x888;
 const bit<16> TYPE_STATS = 0x999;
+const bit<32> HASH_COUNT = 100;
+const bit<48> TIME_INTERVAL = 1000;
 
 /*************************************************************************
 *********************** H E A D E R S  ***********************************
@@ -20,7 +22,7 @@ header ethernet_t {
     bit<16>   etherType;
 }
 
-header ecmp_t {
+header flowlet_t {
     bit<16> enable;
     bit<16> prot_id;
     bit<32> pkt_num;
@@ -68,7 +70,7 @@ struct metadata {
 
 struct headers {
     ethernet_t  ethernet;
-    ecmp_t  ecmp;
+    flowlet_t  flowlet;
     stats_t stats;
     ipv4_t  ipv4;
     tcp_t   tcp;
@@ -91,15 +93,15 @@ parser MyParser(packet_in packet,
         packet.extract(hdr.ethernet);
         transition select(hdr.ethernet.etherType) {
             TYPE_IPV4: parse_ipv4;
-            TYPE_ECMP: parse_ecmp;
+            TYPE_FLOWLET: parse_flowlet;
             TYPE_STATS: parse_stats;
             default: accept;
         }
     }
 
-    state parse_ecmp {
-        packet.extract(hdr.ecmp);
-        transition select(hdr.ecmp.prot_id) {
+    state parse_flowlet {
+        packet.extract(hdr.flowlet);
+        transition select(hdr.flowlet.prot_id) {
             TYPE_IPV4: parse_ipv4;
             default: accept;
         }
@@ -145,7 +147,8 @@ control MyIngress(inout headers hdr,
                   inout standard_metadata_t standard_metadata) {
 
     register<bit<32>>(1) packet_counter; 
-
+    register<bit<16>>(100) reg_flow_ports;
+    register<bit<48>>(100) reg_flow_times;
 
     action drop() {
         mark_to_drop(standard_metadata);
@@ -185,39 +188,42 @@ control MyIngress(inout headers hdr,
     }
 
     action load_balance() {
-        // meta.route = 0;
-        bit<16> hash_base = 0;
-        bit<32> hash_count = 2;     
-
-         
-  /*      // per-flow load balance  
-        hash(meta.route, HashAlgorithm.crc16, hash_base,
-	        {   hdr.ipv4.srcAddr,
-	            hdr.ipv4.dstAddr,
-                hdr.ipv4.protocol,
-                hdr.tcp.srcPort,
-                hdr.tcp.dstPort }, hash_count);
-*/
-
-        // per-packet load balance
+        // flowlet load balance
         bit<32> pkt_cnt;
         packet_counter.read(pkt_cnt, (bit<32>)0);
         pkt_cnt = pkt_cnt+1;
         packet_counter.write((bit<32>)0, pkt_cnt);
-        hdr.ecmp.pkt_num = pkt_cnt;
-        hash(meta.route, HashAlgorithm.crc16, hash_base,
-	        {   pkt_cnt,
-                hdr.ipv4.srcAddr,
+        hdr.flowlet.pkt_num = pkt_cnt;
+
+        bit<14> hashVal ; 
+
+        hash(hashVal, HashAlgorithm.crc16, (bit<16>)0,
+	        {   hdr.ipv4.srcAddr,
 	            hdr.ipv4.dstAddr,
                 hdr.ipv4.protocol,
                 hdr.tcp.srcPort,
-                hdr.tcp.dstPort     }, hash_count);
-
+                hdr.tcp.dstPort     }, HASH_COUNT);
+        bit<16> port ;
+        bit<48> time ;
+        reg_flow_times.read(time, (bit<32>)hashVal);
+        reg_flow_ports.read(port, (bit<32>)hashVal);
+        if(standard_metadata.ingress_global_timestamp - time > TIME_INTERVAL){
+            // time interval of two packet within the same flow is larger than 1000, the packet should use another port
+            if(port==(bit<16>)2){
+                port = (bit<16>)3;
+                meta.route = 1 ;
+            }else{
+                port = (bit<16>)2;
+                meta.route = 0 ;
+            }
+            reg_flow_ports.write((bit<32>)hashVal, port);
+        }
+        reg_flow_times.write((bit<32>)hashVal, standard_metadata.ingress_global_timestamp);
     }
     
-    table ecmp_exact {
+    table flowlet_exact {
         key = {
-            hdr.ecmp.enable: exact;
+            hdr.flowlet.enable: exact;
         }
         actions = {
             load_balance;
@@ -229,12 +235,12 @@ control MyIngress(inout headers hdr,
     }
     
     apply {
-        if (hdr.ecmp.isValid()) {
-            // process ecmp load balance
-            ecmp_exact.apply();
-            if(hdr.ecmp.enable==1){
+        if (hdr.flowlet.isValid()) {
+            // process flowlet load balance
+            flowlet_exact.apply();
+            if(hdr.flowlet.enable==1){
                 route_exact.apply();
-                hdr.ecmp.enable=0;
+                hdr.flowlet.enable=0;
             }else{
                 ipv4_lpm.apply();
             }
@@ -300,7 +306,7 @@ control MyComputeChecksum(inout headers  hdr, inout metadata meta) {
 control MyDeparser(packet_out packet, in headers hdr) {
     apply {
         packet.emit(hdr.ethernet);
-        packet.emit(hdr.ecmp);
+        packet.emit(hdr.flowlet);
         packet.emit(hdr.stats);
         packet.emit(hdr.ipv4);
         packet.emit(hdr.tcp);

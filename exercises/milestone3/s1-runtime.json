@@ -21,9 +21,9 @@
       }
     },
     {
-      "table": "MyIngress.ecmp_exact",
+      "table": "MyIngress.flowlet_exact",
       "match": {
-        "hdr.ecmp.enable": [1]
+        "hdr.flowlet.enable": [1]
       },
       "action_name": "MyIngress.load_balance",
       "action_params": {}
