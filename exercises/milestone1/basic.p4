@@ -244,7 +244,6 @@ control MyEgress(inout headers hdr,
             // this packet is a query packet and statistics is enabled, we read the count of bytes previously forwarded
             byte_cnt_reg.read(hdr.stats.port2, (bit<32>)2);
             byte_cnt_reg.read(hdr.stats.port3, (bit<32>)3);
-            hdr.stats.port3 = byte_cnt;
             hdr.stats.enable = 0;
         }
     }
