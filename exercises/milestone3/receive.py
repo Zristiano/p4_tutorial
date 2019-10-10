@@ -9,7 +9,7 @@ from scapy.all import Packet, IPOption
 from scapy.all import ShortField, IntField, LongField, BitField, FieldListField, FieldLenField
 from scapy.all import IP, TCP, UDP, Raw
 from scapy.layers.inet import _IPOption_HDR
-from send import ECMP, STATS
+from send import FLOWLET, STATS
 
 flowMap = collections.defaultdict(int)
 outOfOrderMap = collections.defaultdict(int)
@@ -39,11 +39,11 @@ class IPOption_MRI(IPOption):
                                    IntField("", 0),
                                    length_from=lambda pkt:pkt.count*4) ]
 def handle_pkt(pkt):
-    if (STATS in pkt) or (ECMP in pkt) or (TCP in pkt and pkt[TCP].dport == 1234):
+    if (STATS in pkt) or (FLOWLET in pkt) or (TCP in pkt and pkt[TCP].dport == 1234):
         print "got a packet"
-        if ECMP in pkt:
+        if FLOWLET in pkt:
             
-            cur_pkt_num = pkt[ECMP].pkt_num
+            cur_pkt_num = pkt[FLOWLET].pkt_num
             last_pkt_num = flowMap[pkt[TCP].sport]
             if(cur_pkt_num < last_pkt_num):
                 outOfOrderMap[pkt[TCP].sport] += 1 
