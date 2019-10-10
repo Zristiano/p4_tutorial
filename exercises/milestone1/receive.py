@@ -2,6 +2,7 @@
 import sys
 import struct
 import os
+import collections
 
 from scapy.all import sniff, sendp, hexdump, get_if_list, get_if_hwaddr
 from scapy.all import Packet, IPOption
@@ -9,6 +10,9 @@ from scapy.all import ShortField, IntField, LongField, BitField, FieldListField,
 from scapy.all import IP, TCP, UDP, Raw
 from scapy.layers.inet import _IPOption_HDR
 from send import ECMP, STATS
+
+flowMap = collections.defaultdict(list)
+outOfOrderMap = collections.defaultdict(int)
 
 def get_if():
     ifs=get_if_list()
@@ -37,7 +41,15 @@ class IPOption_MRI(IPOption):
 def handle_pkt(pkt):
     if (STATS in pkt) or (ECMP in pkt) or (TCP in pkt and pkt[TCP].dport == 1234):
         print "got a packet"
+        if ECMP in pkt:
+            cur_pkt_num = pkt[ECMP].pkt_num
+            flow = flowMap[pkt[TCP].sport]
+            if(cur_pkt_num < flow(-1)):
+                outOfOrderMap[pkt[TCP].sport] += 1 
+            flowMap[pkt[TCP].sport].append(pkt[ECMP].pkt_num)
         pkt.show2()
+        for key in outOfOrderMap.keys():
+            print "flow %s has %s packet in wrong order" % (key, outOfOrderMap[key])
         sys.stdout.flush()
 
 
