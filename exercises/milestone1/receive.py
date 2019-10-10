@@ -11,7 +11,7 @@ from scapy.all import IP, TCP, UDP, Raw
 from scapy.layers.inet import _IPOption_HDR
 from send import ECMP, STATS
 
-flowMap = collections.defaultdict(list)
+flowMap = collections.defaultdict(int)
 outOfOrderMap = collections.defaultdict(int)
 
 def get_if():
@@ -44,10 +44,10 @@ def handle_pkt(pkt):
         if ECMP in pkt:
             
             cur_pkt_num = pkt[ECMP].pkt_num
-            flow = flowMap[pkt[TCP].sport]
-            if(len(flow)>0 and cur_pkt_num < flow[-1]):
+            last_pkt_num = flowMap[pkt[TCP].sport]
+            if(cur_pkt_num < last_pkt_num):
                 outOfOrderMap[pkt[TCP].sport] += 1 
-            flowMap[pkt[TCP].sport].append(cur_pkt_num)
+            flowMap[pkt[TCP].sport] = cur_pkt_num
         pkt.show2()
         print "flowMap.len :", len(flowMap), "  outOfOrderMap.len:", len(outOfOrderMap)
         for key in outOfOrderMap.keys():
