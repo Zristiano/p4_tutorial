@@ -21,14 +21,6 @@
       }
     },
     {
-      "table": "MyIngress.flowlet_exact",
-      "match": {
-        "hdr.flowlet.enable": [1]
-      },
-      "action_name": "MyIngress.load_balance",
-      "action_params": {}
-    },
-    {
       "table": "MyIngress.route_exact",
       "match": {
         "meta.route": [1]

@@ -221,19 +221,6 @@ control MyIngress(inout headers hdr,
         reg_flow_times.write((bit<32>)hashVal, standard_metadata.ingress_global_timestamp);
     }
     
-    table flowlet_exact {
-        key = {
-            hdr.flowlet.enable: exact;
-        }
-        actions = {
-            load_balance;
-            drop;
-            NoAction;
-        }
-        size = 1024;
-        default_action = NoAction();
-    }
-    
     apply {
         if (hdr.flowlet.isValid()) {
             // process flowlet load balance
