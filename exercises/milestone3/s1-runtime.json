@@ -1,0 +1,54 @@
+{
+  "target": "bmv2",
+  "p4info": "build/basic.p4.p4info.txt",
+  "bmv2_json": "build/basic.json",
+  "table_entries": [
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "default_action": true,
+      "action_name": "MyIngress.drop",
+      "action_params": { }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.4.2", 32]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:02:01:00",
+        "port": 2
+      }
+    },
+    {
+      "table": "MyIngress.ecmp_exact",
+      "match": {
+        "hdr.ecmp.enable": [1]
+      },
+      "action_name": "MyIngress.load_balance",
+      "action_params": {}
+    },
+    {
+      "table": "MyIngress.route_exact",
+      "match": {
+        "meta.route": [1]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:02:01:00",
+        "port": 2
+      }
+    },
+    {
+      "table": "MyIngress.route_exact",
+      "match": {
+        "meta.route": [0]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:03:01:00",
+        "port": 3
+      }
+    }
+  ]
+}
