@@ -237,8 +237,38 @@ control MyIngress(inout headers hdr,
     apply {
         if (hdr.flowlet.isValid()) {
             // process flowlet load balance
-            flowlet_exact.apply();
             if(hdr.flowlet.enable==1){
+                bit<32> pkt_cnt;
+                packet_counter.read(pkt_cnt, (bit<32>)0);
+                pkt_cnt = pkt_cnt+1;
+                packet_counter.write((bit<32>)0, pkt_cnt);
+                hdr.flowlet.pkt_num = pkt_cnt;
+
+                bit<14> hashVal ; 
+
+                hash(hashVal, HashAlgorithm.crc16, (bit<16>)0,
+	                {   hdr.ipv4.srcAddr,
+	                    hdr.ipv4.dstAddr,
+                        hdr.ipv4.protocol,
+                        hdr.tcp.srcPort,
+                        hdr.tcp.dstPort     }, HASH_COUNT);
+                bit<16> port ;
+                bit<48> time ;
+                reg_flow_times.read(time, (bit<32>)hashVal);
+                reg_flow_ports.read(port, (bit<32>)hashVal);
+                if(standard_metadata.ingress_global_timestamp - time > TIME_INTERVAL){
+                    // time interval of two packet within the same flow is larger than 1000, the packet should use another port
+                    if(port==(bit<16>)2){
+                        port = (bit<16>)3;
+                        meta.route = 1 ;
+                    }else{
+                        port = (bit<16>)2;
+                        meta.route = 0 ;
+                    }
+                    reg_flow_ports.write((bit<32>)hashVal, port);
+                }
+                reg_flow_times.write((bit<32>)hashVal, standard_metadata.ingress_global_timestamp);
+
                 route_exact.apply();
                 hdr.flowlet.enable=0;
             }else{
