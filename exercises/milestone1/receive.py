@@ -42,12 +42,13 @@ def handle_pkt(pkt):
     if (STATS in pkt) or (ECMP in pkt) or (TCP in pkt and pkt[TCP].dport == 1234):
         print "got a packet"
         if ECMP in pkt:
-            print "in ECMP"
+            
             cur_pkt_num = pkt[ECMP].pkt_num
             flow = flowMap[pkt[TCP].sport]
+            print "in ECMP  cur_pkt_num", cur_pkt_num, " sport:", pkt[TCP].sport, "  flow:", flow
             if(len(flow)>0 and cur_pkt_num < flow[-1]):
                 outOfOrderMap[pkt[TCP].sport] += 1 
-            flowMap[pkt[TCP].sport].append(pkt[ECMP].pkt_num)
+            flowMap[pkt[TCP].sport].append(cur_pkt_num)
         pkt.show2()
         print "flowMap.len :", len(flowMap), "  outOfOrderMap.len:", len(outOfOrderMap)
         for key in outOfOrderMap.keys():
