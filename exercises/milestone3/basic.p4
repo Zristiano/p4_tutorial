@@ -6,7 +6,7 @@ const bit<16> TYPE_IPV4 = 0x800;
 const bit<16> TYPE_FLOWLET = 0x888;
 const bit<16> TYPE_STATS = 0x999;
 const bit<32> HASH_COUNT = 100;
-const bit<48> TIME_INTERVAL = 1000;
+const bit<48> TIME_INTERVAL = 500;
 
 /*************************************************************************
 *********************** H E A D E R S  ***********************************
@@ -220,7 +220,7 @@ control MyIngress(inout headers hdr,
         }
         reg_flow_times.write((bit<32>)hashVal, standard_metadata.ingress_global_timestamp);
     }
-    
+
     apply {
         if (hdr.flowlet.isValid()) {
             // process flowlet load balance
