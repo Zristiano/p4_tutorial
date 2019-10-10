@@ -69,9 +69,9 @@ struct metadata {
 struct headers {
     ethernet_t  ethernet;
     ecmp_t  ecmp;
+    stats_t stats;
     ipv4_t  ipv4;
     tcp_t   tcp;
-    stats_t stats;
 }
 
 /*************************************************************************
@@ -303,6 +303,7 @@ control MyDeparser(packet_out packet, in headers hdr) {
         packet.emit(hdr.ecmp);
         packet.emit(hdr.stats);
         packet.emit(hdr.ipv4);
+        packet.emit(hdr.tcp);
     }
 }
 
