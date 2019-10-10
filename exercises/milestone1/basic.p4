@@ -235,20 +235,16 @@ control MyEgress(inout headers hdr,
     
     apply{
         if(!hdr.stats.isValid()){
+            // if this packet is not query packet, we count the bytes forwarded
             bit<32> byte_cnt;
             byte_cnt_reg.read(byte_cnt, (bit<32>)standard_metadata.egress_port);
             byte_cnt = byte_cnt + standard_metadata.packet_length;
             byte_cnt_reg.write((bit<32>)standard_metadata.egress_port, byte_cnt);
         }else if(hdr.stats.enable==1){
+            // this packet is a query packet and statistics is enabled, we read the count of bytes previously forwarded
             byte_cnt_reg.read(hdr.stats.port2, (bit<32>)2);
-            // byte_cnt_reg.read(hdr.stats.port3, (bit<32>)3);
-
-            bit<32> byte_cnt;
-            byte_cnt_reg.read(byte_cnt, (bit<32>)3);
-            byte_cnt = byte_cnt + standard_metadata.packet_length;
-            byte_cnt_reg.write((bit<32>)3, byte_cnt);
+            byte_cnt_reg.read(hdr.stats.port3, (bit<32>)3);
             hdr.stats.port3 = byte_cnt;
-
             hdr.stats.enable = 0;
         }
     }
