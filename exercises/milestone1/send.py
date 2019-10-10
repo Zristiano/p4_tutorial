@@ -58,12 +58,12 @@ def main():
     if len(sys.argv)==3:
         for i in range(200):
             pkt =  Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff')
-            pkt = pkt / ECMP(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(50000,50050)) / sys.argv[2]
+            pkt = pkt / ECMP(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(50000,50010)) / sys.argv[2]
             pkt.show2()
             sendp(pkt, iface=iface, verbose=False)
     if len(sys.argv)==2:
         pkt =  Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff')
-        pkt = pkt / STATS(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(50000,50050)) / 'stats'
+        pkt = pkt / STATS(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(50000,50010)) / 'stats'
         pkt.show2()
         sendp(pkt, iface=iface, verbose=False)
     
