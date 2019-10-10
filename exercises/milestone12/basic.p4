@@ -189,7 +189,7 @@ control MyIngress(inout headers hdr,
         bit<16> hash_base = 0;
         bit<32> hash_count = 2;     
 
-         
+/*         
        // per-flow load balance  
         hash(meta.route, HashAlgorithm.crc16, hash_base,
 	        {   hdr.ipv4.srcAddr,
@@ -198,7 +198,7 @@ control MyIngress(inout headers hdr,
                 hdr.tcp.srcPort,
                 hdr.tcp.dstPort }, hash_count);
 
-/* 
+ */
         // per-packet load balance
         bit<32> pkt_cnt;
         packet_counter.read(pkt_cnt, (bit<32>)0);
@@ -212,7 +212,7 @@ control MyIngress(inout headers hdr,
                 hdr.ipv4.protocol,
                 hdr.tcp.srcPort,
                 hdr.tcp.dstPort     }, hash_count);
-*/
+
     }
     
     table ecmp_exact {
