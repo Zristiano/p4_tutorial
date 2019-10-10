@@ -35,7 +35,7 @@ class IPOption_MRI(IPOption):
                                    IntField("", 0),
                                    length_from=lambda pkt:pkt.count*4) ]
 def handle_pkt(pkt):
-    if ECMP in pkt or (TCP in pkt and pkt[TCP].dport == 1234):
+    if (STATS in pkt) or (ECMP in pkt) or (TCP in pkt and pkt[TCP].dport == 1234):
         print "got a packet"
         pkt.show2()
     #    hexdump(pkt)

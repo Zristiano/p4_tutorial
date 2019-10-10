@@ -7,7 +7,7 @@ import struct
 
 from scapy.all import sendp, send, get_if_list, get_if_hwaddr
 from scapy.all import Packet
-from scapy.all import Ether, IP, UDP, TCP, ShortField
+from scapy.all import Ether, IP, UDP, TCP, ShortField, IntField
 from scapy.all import bind_layers
 
 class ECMP(Packet):
@@ -16,9 +16,20 @@ class ECMP(Packet):
                     ShortField("enable", 0),
                     ShortField("prot_id", 0)
                 ]
-
 bind_layers(Ether, ECMP, type=0x0888)
 bind_layers(ECMP, IP, prot_id=0x0800)
+
+
+class STATS(Packet):
+    name = "STATS"
+    fields_desc = [ 
+                    IntField("port2", 0),
+                    IntField("port3", 0),
+                    ShortField("enable",0),
+                    ShortField("prot_id", 0)
+                ]
+bind_layers(Ether, STATS, type=0x0999)
+bind_layers(STATS, IP, prot_id=0x0800)
 
 def get_if():
     ifs=get_if_list()
@@ -43,8 +54,9 @@ def main():
 
     print "sending on interface %s to %s" % (iface, str(addr))
     pkt =  Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff')
-    pkt = pkt / ECMP(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
+    # pkt = pkt / ECMP(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
     # pkt = pkt /IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
+    pkt = pkt / STATS(enable=1) /IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
     pkt.show2()
     sendp(pkt, iface=iface, verbose=False)
 

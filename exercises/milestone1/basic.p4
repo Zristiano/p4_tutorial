@@ -4,6 +4,7 @@
 
 const bit<16> TYPE_IPV4 = 0x800;
 const bit<16> TYPE_ECMP = 0x888;
+const bit<16> TYPE_STATS = 0x999;
 
 /*************************************************************************
 *********************** H E A D E R S  ***********************************
@@ -21,6 +22,13 @@ header ethernet_t {
 
 header ecmp_t {
     bit<16> enable;
+    bit<16> prot_id;
+}
+
+header stats_t {
+    bit<32> port2; 
+    bit<32> port3;
+    bit<16> enable; 
     bit<16> prot_id;
 }
 
@@ -62,6 +70,7 @@ struct headers {
     ecmp_t  ecmp;
     ipv4_t  ipv4;
     tcp_t   tcp;
+    stats_t stats;
 }
 
 /*************************************************************************
@@ -82,6 +91,7 @@ parser MyParser(packet_in packet,
         transition select(hdr.ethernet.etherType) {
             TYPE_IPV4: parse_ipv4;
             TYPE_ECMP: parse_ecmp;
+            TYPE_STATS: parse_stats;
             default: accept;
         }
     }
@@ -89,6 +99,14 @@ parser MyParser(packet_in packet,
     state parse_ecmp {
         packet.extract(hdr.ecmp);
         transition select(hdr.ecmp.prot_id) {
+            TYPE_IPV4: parse_ipv4;
+            default: accept;
+        }
+    }
+
+    state parse_stats{
+        packet.extract(hdr.stats);
+        transition select(hdr.stats.prot_id) {
             TYPE_IPV4: parse_ipv4;
             default: accept;
         }
@@ -106,7 +124,6 @@ parser MyParser(packet_in packet,
         packet.extract(hdr.tcp);
         transition accept;
     }
-
 }
 
 /*************************************************************************
@@ -192,7 +209,6 @@ control MyIngress(inout headers hdr,
     }
     
     apply {
-
         if (hdr.ecmp.isValid()) {
             // process ecmp load balance
             ecmp_exact.apply();
@@ -215,7 +231,24 @@ control MyIngress(inout headers hdr,
 control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
-    apply {  }
+    register<bit<32>>(4) byte_cnt_reg;
+    if(!hdr.stats.isValid()){
+        bit<32> byte_cnt;
+        byte_cnt_reg.read(byte_cnt, (bit<32>)standard_metadata.egress_port);
+        byte_cnt = byte_cnt + standard_metadata.packet_length;
+        byte_cnt_reg.write((bit<32>)standard_metadata.egress_port, byte_cnt);
+    }else if(hdr.stats.enable==1){
+        byte_cnt_reg.read(hdr.stats.port2, (bit<32>)2);
+        // byte_cnt_reg.read(hdr.stats.port3, (bit<32>)3);
+
+        bit<32> byte_cnt;
+        byte_cnt_reg.read(byte_cnt, (bit<32>)3);
+        byte_cnt = byte_cnt + standard_metadata.packet_length;
+        byte_cnt_reg.write((bit<32>)3, byte_cnt);
+        hdr.stats.port3 = byte_cnt;
+
+        hdr.stats.enable = 0;
+    }
 }
 
 /*************************************************************************
